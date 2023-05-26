@@ -1,0 +1,27 @@
+.links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--dark-content);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  font-size: 1.25rem;
+  height: 10vh;
+  background-color: var(--background-color);
+  color: var(--dark-content);
+}

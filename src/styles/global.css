@@ -1,0 +1,79 @@
+:root {
+  --heading-color: #42446e;
+  --dark-content: #666666;
+  --light-content: #a7a7a7;
+  --background-color: white;
+  --spinner-color: black;
+  font-family: "Montserrat";
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--dark-content);
+}
+
+a:visited {
+  text-decoration: none;
+  color: var(--dark-content);
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--dark-content);
+}
+
+a:active {
+  text-decoration: none;
+  color: var(--dark-content);
+}
+
+.container {
+  height: 90vh;
+  background-color: var(--background-color);
+  overflow: auto;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.name {
+  background: linear-gradient(90deg, #13b0f5 -2.06%, #e70faa 100%),
+    linear-gradient(0deg, #42446e, #42446e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
+}

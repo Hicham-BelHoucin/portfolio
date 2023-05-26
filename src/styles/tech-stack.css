@@ -1,0 +1,54 @@
+.tech-stack-icons {
+  display: grid;
+  place-items: center;
+  gap: 4rem;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: auto;
+}
+
+.tech-stack {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link-and-tech > div {
+  width: 60%;
+}
+
+.link-and-tech > * {
+  display: flex;
+  align-items: center;
+  font-size: small;
+  gap: 0.25rem;
+  color: 00000 !important;
+  white-space: nowrap; /* Prevent line breaks within the text */
+  overflow: hidden; /* Hide any overflowing content */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+  color: var(--dark-content);
+}
+.link-and-tech {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .tech-stack-icons {
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .heading {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heading > h3 {
+    text-align: center;
+  }
+}
