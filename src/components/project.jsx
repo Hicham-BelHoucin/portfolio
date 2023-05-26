@@ -8,18 +8,12 @@ export default function Project({ project }) {
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
-        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
-        const headers = {
-          Authorization: `Bearer ${accessToken}`,
-        };
         const response = await fetch(
-          `https://api.github.com/repos/Hicham-BelHoucin/${project.name}`,
-          { headers }
+          `https://api.github.com/repos/Hicham-BelHoucin/${project.name}`
         );
         if (response.ok) {
           const data = await response.json();
           setItem(data);
-          // console.log(data);
         } else {
           throw new Error("Failed to fetch project data");
         }
@@ -30,19 +24,12 @@ export default function Project({ project }) {
 
     const fetchProjectLanguages = async () => {
       try {
-        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
-        const headers = {
-          Authorization: `Bearer ${accessToken}`,
-        };
         const response = await fetch(
-          `https://api.github.com/repos/Hicham-BelHoucin/${project.name}/languages`,
-          { headers }
+          `https://api.github.com/repos/Hicham-BelHoucin/${project.name}/languages`
         );
         if (response.ok) {
           const data = await response.json();
           setLanguages(data);
-
-          // console.log(Object.keys(data).join(" "));
         } else {
           throw new Error("Failed to fetch project data");
         }

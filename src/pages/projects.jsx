@@ -9,13 +9,8 @@ export default function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
-        const headers = {
-          Authorization: `Bearer ${accessToken}`,
-        };
         const response = await fetch(
-          "https://api.github.com/users/Hicham-BelHoucin/repos",
-          { headers }
+          "https://api.github.com/users/Hicham-BelHoucin/repos"
         );
         if (response.ok) {
           const data = await response.json();
@@ -40,8 +35,7 @@ export default function Projects() {
         </div>
         <div className="projects-contianer">
           {projects.map((item, i) => {
-            if (item.name === "Hicham-BelHoucin") return <></>;
-            console.log(i);
+            if (item.name === "Hicham-BelHoucin") return <div key={i}></div>;
             return <Project key={i} project={item} />;
           })}
         </div>
