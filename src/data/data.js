@@ -14,12 +14,6 @@ const projects = [
     languages: "JavaScript HTML",
   },
   {
-    name: "portfolio",
-    html_url: "https://github.com/Hicham-BelHoucin/portfolio",
-    description: "my personal portfolio",
-    languages: "JavaScript CSS HTML",
-  },
-  {
     name: "inception",
     html_url: "https://github.com/Hicham-BelHoucin/inception",
     description:

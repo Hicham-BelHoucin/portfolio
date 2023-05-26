@@ -8,7 +8,7 @@ export default function Project({ item }) {
           <img src="/link.svg" alt="" color="#fff" />
           View Code
         </a>
-        <div>Tech used : {item.laguages}</div>
+        <div>Tech used : {item.languages}</div>
       </div>
     </div>
   );
