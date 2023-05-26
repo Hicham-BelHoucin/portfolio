@@ -8,7 +8,7 @@ export default function Project({ project }) {
   useEffect(() => {
     const fetchProjectData = async () => {
       try {
-        const accessToken = "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";
+        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
         const headers = {
           Authorization: `Bearer ${accessToken}`,
         };
@@ -30,7 +30,7 @@ export default function Project({ project }) {
 
     const fetchProjectLanguages = async () => {
       try {
-        const accessToken = "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";
+        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
         const headers = {
           Authorization: `Bearer ${accessToken}`,
         };

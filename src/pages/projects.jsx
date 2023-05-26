@@ -9,7 +9,7 @@ export default function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const accessToken = "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";
+        const accessToken = process.env.REACT_APP_GITHUB_ACCESS_TOKEN;
         const headers = {
           Authorization: `Bearer ${accessToken}`,
         };
