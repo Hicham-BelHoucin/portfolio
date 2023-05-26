@@ -29,8 +29,8 @@ export default function About() {
         </div>
         <div className="">
           <h1>Education</h1>
-          {education.map((item) => {
-            return <EducationCard {...item} />;
+          {education.map((item, i) => {
+            return <EducationCard key={i} {...item} />;
           })}
         </div>
       </div>

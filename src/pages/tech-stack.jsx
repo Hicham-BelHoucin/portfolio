@@ -24,8 +24,8 @@ export default function TechStack() {
           <h3> Technologies I've been working with recently</h3>
         </div>
         <div className="tech-stack-icons">
-          {techStack.map((item) => {
-            return <img src={`/${item}.png`} alt="" width={70} />;
+          {techStack.map((item, i) => {
+            return <img src={`/${item}.png`} key={i} alt="" width={70} />;
           })}
         </div>
       </div>

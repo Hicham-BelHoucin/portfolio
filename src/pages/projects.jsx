@@ -1,31 +1,9 @@
 import Layout from "./layout";
-import { useState, useEffect } from "react";
-import Spinner from "../components/spinner";
 import Project from "../components/project";
 import "./../styles/projects.css";
+import projects from "./../data/data";
 
 export default function Projects() {
-  const [projects, setProjects] = useState([]);
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(
-          "https://api.github.com/users/Hicham-BelHoucin/repos"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setProjects(data);
-        } else {
-          throw new Error("Failed to fetch projects");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-  if (!projects) return <Spinner />;
   return (
     <Layout className="projects">
       <div className="projects-main">
@@ -35,8 +13,7 @@ export default function Projects() {
         </div>
         <div className="projects-contianer">
           {projects.map((item, i) => {
-            if (item.name === "Hicham-BelHoucin") return <div key={i}></div>;
-            return <Project key={i} project={item} />;
+            return <Project key={i} item={item} />;
           })}
         </div>
       </div>
