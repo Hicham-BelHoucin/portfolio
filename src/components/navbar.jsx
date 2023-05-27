@@ -64,7 +64,7 @@ export default function Navbar() {
                   <BsGithub size={24} />
                 </li>
               </Link>
-              <Link to="https://www.linkedin.com/in/hicham-bel-houcin-a3931323b/">
+              <Link to="https://www.linkedin.com/in/hicham-bel-houcin/">
                 <li className="link">
                   <AiFillLinkedin size={24} />
                 </li>
