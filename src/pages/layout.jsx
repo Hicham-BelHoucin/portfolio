@@ -20,10 +20,10 @@ export default function Layout({ children, className }) {
           scale: 1.0,
           scaleMobile: 1.0,
           colorMode: "variance",
-          birdSize: 1.3,
+          birdSize: 1.0,
           wingSpan: 26.0,
-          speedLimit: 6.0,
-          separation: 39.0,
+          speedLimit: 3.0,
+          separation: 29.0,
           alignment: 19.0,
           cohesion: 21.0,
         })
