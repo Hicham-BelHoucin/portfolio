@@ -1,3 +1,15 @@
+@keyframes left-to-right {
+  0% {
+    /* left: -5px; */
+    transform: translateX(-30deg);
+    /* opacity: 1; */
+  }
+  100% {
+    /* left: 0px; */
+    /* opacity: 1; */
+  }
+}
+
 .tech-stack-icons {
   display: grid;
   place-items: center;
@@ -17,7 +29,11 @@
 }
 
 .link-and-tech > div {
-  width: 60%;
+  width: 59%;
+  padding: 0;
+  white-space: nowrap; /* Prevent line breaks within the text */
+  overflow: hidden; /* Hide any overflowing content */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
 }
 
 .link-and-tech > * {
@@ -35,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem;
 }
 
 @media screen and (max-width: 768px) {

@@ -1,6 +1,6 @@
-export default function EducationCard({ title, place, date }) {
+export default function EducationCard({ title, place, date, className }) {
   return (
-    <div className="education-card">
+    <div className={`education-card ${className}`}>
       <div className="education-title">{title}</div>
       <div className="education-place-date">
         <div className="place">

@@ -1,6 +1,6 @@
-export default function Project({ item }) {
+export default function Project({ item, className }) {
   return (
-    <div className="project-card">
+    <div className={`project-card ${className}`}>
       <h1>{item?.name || ""}</h1>
       <p className="description">{item.description}</p>
       <div className="link-and-tech">

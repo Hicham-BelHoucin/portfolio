@@ -4,6 +4,25 @@
   align-items: center;
   justify-content: center;
   list-style: none;
+  z-index: 10;
+}
+
+.selected {
+  position: relative;
+  color: var(--heading-color) !important;
+}
+
+.selected::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  /* animation: slide-in-bck-left 2s ease-in-out; */
+  background: linear-gradient(90deg, #13b0f5 -2.06%, #e70faa 100%),
+    linear-gradient(0deg, #42446e, #42446e);
 }
 
 .link {
@@ -13,6 +32,11 @@
   letter-spacing: 2px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.link:hover {
+  -webkit-animation: shake-top 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: shake-top 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
 .navbar {

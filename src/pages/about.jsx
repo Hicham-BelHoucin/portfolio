@@ -19,8 +19,8 @@ export default function About() {
     <Layout className="about">
       <div className="about-main">
         <div className="about-heading">
-          <h1>About</h1>
-          <p className="about-pragraph">
+          <h1 className="slide-in-bck-left">About</h1>
+          <p className="about-pragraph slide-in-bck-right">
             I'm Hicham Bel Houcin, a 19-year-old front-end developer with a
             passion for continuous learning. I am enthusiastic, self-motivated,
             reliable, responsible, and hardworking. I work well both in a team
@@ -28,9 +28,15 @@ export default function About() {
           </p>
         </div>
         <div className="">
-          <h1>Education</h1>
+          <h1 className="slide-in-top">Education</h1>
           {education.map((item, i) => {
-            return <EducationCard key={i} {...item} />;
+            return (
+              <EducationCard
+                key={i}
+                {...item}
+                className={i % 2 ? "slide-in-bck-left" : "slide-in-bck-right"}
+              />
+            );
           })}
         </div>
       </div>

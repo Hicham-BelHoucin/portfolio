@@ -29,7 +29,7 @@ h3 {
   width: 100px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   .mode-icon {
     width: 40px;
   }
@@ -37,7 +37,7 @@ h3 {
     font-size: x-small !important;
   }
   .links {
-    flex-direction: column;
+    flex-direction: column !important;
     position: fixed;
     top: 10vh;
     right: 0;

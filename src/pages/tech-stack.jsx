@@ -2,6 +2,14 @@ import Layout from "./layout";
 import "./../styles/tech-stack.css";
 
 export default function TechStack() {
+  const classNames = [
+    "bounce-in-top",
+    "bounce-in-right",
+    "roll-in-top",
+    "slide-in-top",
+    "slide-in-bck-left",
+    "slide-in-bck-right",
+  ];
   const techStack = [
     "react",
     "javascript",
@@ -20,12 +28,28 @@ export default function TechStack() {
     <Layout className="tech-stack">
       <div className="main">
         <div className="heading">
-          <h1>My Tech Stack</h1>
-          <h3> Technologies I've been working with recently</h3>
+          <h1 className="slide-in-bck-left">My Tech Stack</h1>
+          <h3 className="slide-in-bck-right">
+            Technologies I've been working with recently
+          </h3>
         </div>
         <div className="tech-stack-icons">
           {techStack.map((item, i) => {
-            return <img src={`/${item}.png`} key={i} alt="" width={70} />;
+            // Math.random() * max + min
+            console.log(Math.floor(Math.random() * classNames.length + 0));
+            return (
+              <img
+                src={`/${item}.png`}
+                key={i}
+                alt=""
+                width={70}
+                className={
+                  classNames[
+                    Math.floor(Math.random() * (classNames.length - 1) + 0)
+                  ]
+                }
+              />
+            );
           })}
         </div>
       </div>
