@@ -16,7 +16,7 @@ export default function TechStack() {
     "typescript",
     "css",
     "html",
-    localStorage.getItem("mode") === "light" ? "github" : "github-white",
+    "github",
     "git",
     "tailwind",
     "vscode",
@@ -36,7 +36,6 @@ export default function TechStack() {
         <div className="tech-stack-icons">
           {techStack.map((item, i) => {
             // Math.random() * max + min
-            console.log(Math.floor(Math.random() * classNames.length + 0));
             return (
               <img
                 src={`/${item}.png`}

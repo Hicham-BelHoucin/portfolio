@@ -12,55 +12,14 @@ import { useLocation, useMedia } from "react-use";
 
 export default function Navbar() {
   const path = useLocation().pathname;
-  console.log("path : ", path);
   const isWide = useMedia("(min-width: 768px)");
-  const [image, setImage] = useState(localStorage.getItem("mode"));
   const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    if (image !== "light" && image !== "dark") {
-      localStorage.setItem("mode", "light");
-      setImage("light");
-    }
-    document.documentElement.style.setProperty(
-      "--background-color",
-      image === "light" ? "#f9f6f6" : "black"
-    );
-    document.documentElement.style.setProperty(
-      "--heading-color",
-      image === "light" ? "#42446e" : "#fff"
-    );
-    document.documentElement.style.setProperty(
-      "--dark-content",
-      image === "light" ? "#666666" : "#c4b8b8"
-    );
-    document.documentElement.style.setProperty(
-      "--light-content",
-      image === "light" ? "#a7a7a7" : "gray"
-    );
-    document.documentElement.style.setProperty(
-      "--spinner-color",
-      image === "light" ? "black" : "white"
-    );
-    document.documentElement.style.setProperty(
-      "--card-bg-color",
-      image === "light" ? "#fff" : "#191919"
-    );
-  }, [image]);
 
   useEffect(() => {
     if (isWide) {
       setShow(false);
     }
   }, [isWide]);
-
-  const ChnageMode = () => {
-    setImage((prev) => {
-      localStorage.setItem("mode", prev === "light" ? "dark" : "light");
-      setShow(false);
-      return prev === "light" ? "dark" : "light";
-    });
-  };
 
   return (
     <Wrapper>
@@ -115,15 +74,6 @@ export default function Navbar() {
                   <AiFillTwitterCircle size={24} />
                 </li>
               </Link>
-              <li className="link">
-                <button className="button" onClick={ChnageMode}>
-                  <img
-                    src={`/${image === "light" ? "dark" : "light"}.png`}
-                    alt=""
-                    width={18}
-                  />
-                </button>
-              </li>
             </ul>
           </>
         ) : (
@@ -153,11 +103,6 @@ export default function Navbar() {
             <Link to="/contact">
               <li className="link">Contact</li>
             </Link>
-            <li className="link">
-              <button className="button" onClick={ChnageMode}>
-                <img src={`/${image}.png`} alt="" className="mode-icon" />
-              </button>
-            </li>
           </ul>
         )}
       </nav>

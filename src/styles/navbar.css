@@ -46,6 +46,7 @@
   padding: 0 2rem;
   font-size: 1.25rem;
   height: 10vh;
-  background-color: var(--background-color);
+  background-color: #f9f6f6;
   color: var(--dark-content);
+  z-index: 1000;
 }
