@@ -10,6 +10,12 @@
   max-width: 250px;
 }
 
+.project-card > h1 {
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  color: var(--heading-color);
+}
+
 .projects-contianer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -34,7 +40,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 2rem;
 }
 

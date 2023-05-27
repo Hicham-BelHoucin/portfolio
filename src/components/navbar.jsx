@@ -87,23 +87,25 @@ export default function Navbar() {
           </button>
         )}
         {show && (
-          <ul className="links">
-            <Link to="/">
-              <li className="link">Home</li>
-            </Link>
-            <Link to="/about">
-              <li className="link">About</li>
-            </Link>
-            <Link to="/tech-stack">
-              <li className="link">Tech Stack</li>
-            </Link>
-            <Link to="/projects">
-              <li className="link">Projects</li>
-            </Link>
-            <Link to="/contact">
-              <li className="link">Contact</li>
-            </Link>
-          </ul>
+          <>
+            <ul className="links">
+              <Link to="/">
+                <li className="link">Home</li>
+              </Link>
+              <Link to="/about">
+                <li className="link">About</li>
+              </Link>
+              <Link to="/tech-stack">
+                <li className="link">Tech Stack</li>
+              </Link>
+              <Link to="/projects">
+                <li className="link">Projects</li>
+              </Link>
+              <Link to="/contact">
+                <li className="link">Contact</li>
+              </Link>
+            </ul>
+          </>
         )}
       </nav>
     </Wrapper>

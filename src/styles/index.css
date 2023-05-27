@@ -44,7 +44,10 @@ h3 {
     padding: 0.5rem;
     /* height: 30vh; */
     overflow: auto;
-    gap: 0.5rem !important;
+    gap: 1rem !important;
+    bottom: 0;
+    left: 0;
+    background-color: #f9f6f6;
   }
   .link {
     font-size: 0rem;
@@ -69,4 +72,15 @@ h3 {
 }
 
 @media screen and (min-width: 1280px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  .link {
+    font-size: 1rem;
+    padding: 0.5rem;
+    letter-spacing: 2px;
+  }
 }
