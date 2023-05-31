@@ -12,8 +12,8 @@ export default function Home() {
         <div className="bounce-in-right">I build things for Web</div>
         <div className="bounce-in-top">
           <a download="resume.pdf" href="/my-resume.pdf">
-            <button class="primary bounce-in-left">
-              <i class="fa fa-download"></i> Download CV
+            <button className="primary bounce-in-left">
+              <i className="fa fa-download"></i> Download CV
             </button>
           </a>
         </div>

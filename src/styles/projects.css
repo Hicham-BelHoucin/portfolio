@@ -16,6 +16,19 @@
   color: var(--heading-color);
 }
 
+.slide-text {
+  animation: slide 5s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .projects-contianer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

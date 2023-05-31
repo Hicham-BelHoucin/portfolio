@@ -1,4 +1,6 @@
-export default function Spinner() {
+import "./../styles/spinner.css";
+
+const Spinner = () => {
   return (
     <div className="lds-ring">
       <div></div>
@@ -7,4 +9,6 @@ export default function Spinner() {
       <div></div>
     </div>
   );
-}
+};
+
+export default Spinner;

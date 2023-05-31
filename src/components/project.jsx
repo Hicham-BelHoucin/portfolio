@@ -8,7 +8,16 @@ export default function Project({ item, className }) {
           <img src="/link.svg" alt="" color="#fff" />
           View Code
         </a>
-        <div>Tech used : {item.languages}</div>
+        <div>
+          Tech used :
+          <div
+            style={{
+              overflow: "hidden",
+            }}
+          >
+            <div className="slide-text">{item.languages}</div>
+          </div>
+        </div>
       </div>
     </div>
   );
