@@ -1,7 +1,6 @@
 import Layout from "./layout";
 import "./../styles/home.css";
 import "./../styles/about.css";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
