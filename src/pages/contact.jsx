@@ -45,7 +45,7 @@ export default function Contact() {
         })
         .then((response) => {
           setSent(true);
-          console.log("Email sent successfully!", response);
+          console.log("Email sent successfully!");
         })
         .catch((error) => {
           console.error("Error sending email:", error);
