@@ -58,7 +58,7 @@ export default function Contact() {
       <div className="contact">
         {!sent ? (
           <>
-            <div className="email-name">
+            <div className="email-name slide-in-bck-right">
               <Input
                 label="Name"
                 value={data.name}
@@ -74,13 +74,15 @@ export default function Contact() {
                 }}
               />
             </div>
-            <Input
-              label="Subject"
-              value={data.subject}
-              onChange={(e) => {
-                setData({ ...data, subject: e.target.value });
-              }}
-            />
+            <div className="slide-in-bck-left">
+              <Input
+                label="Subject"
+                value={data.subject}
+                onChange={(e) => {
+                  setData({ ...data, subject: e.target.value });
+                }}
+              />
+            </div>
             <div className="input-container">
               <label htmlFor="input" className="label slide-in-bck-left">
                 Message
