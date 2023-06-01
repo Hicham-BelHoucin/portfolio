@@ -101,9 +101,6 @@ export default function Projects() {
   }, []);
 
   const classNames = [
-    "bounce-in-top",
-    "bounce-in-right",
-    "roll-in-top",
     "slide-in-top",
     "slide-in-bck-left",
     "slide-in-bck-right",
@@ -137,7 +134,7 @@ export default function Projects() {
                   item={item}
                   className={
                     classNames[
-                      Math.floor(Math.random() * (classNames.length - 1) + 0)
+                      Math.floor(Math.random() * (classNames.length - 1))
                     ]
                   }
                 />

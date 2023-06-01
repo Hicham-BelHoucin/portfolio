@@ -5,12 +5,12 @@ import "./../styles/about.css";
 export default function Home() {
   return (
     <Layout className="about">
-      <div className="personal-info">
-        <div className="bounce-in-top">HI 👋</div>
-        <div className="bounce-in-right"> My Name Is</div>
-        <div className="name bounce-in-top">Hicham Bel Houcin</div>
-        <div className="bounce-in-right">I build things for Web</div>
-        <div className="bounce-in-top">
+      <div className="personal-info slide-in-bck-right">
+        <div className="slide-in-bck-right">HI 👋</div>
+        <div className="slide-in-bck-right"> My Name Is</div>
+        <div className="slide-in-bck-right name">Hicham Bel Houcin</div>
+        <div className="slide-in-bck-right">I build things for Web</div>
+        <div className="slide-in-bck-right">
           <a download="resume.pdf" href="/my-resume.pdf">
             <button className="primary bounce-in-left">
               <i className="fa fa-download"></i> Download CV
@@ -22,7 +22,7 @@ export default function Home() {
         src="/portfolio_image.png"
         alt=""
         width={500}
-        className="profile-img roll-in-top"
+        className="profile-img slide-in-bck-left"
       />
     </Layout>
   );
