@@ -1,18 +1,7 @@
-@keyframes left-to-right {
-  0% {
-    /* left: -5px; */
-    transform: translateX(-30deg);
-    /* opacity: 1; */
-  }
-  100% {
-    /* left: 0px; */
-    /* opacity: 1; */
-  }
-}
-
 .tech-stack-icons {
   display: grid;
   place-items: center;
+  align-content: center;
   gap: 4rem;
   grid-template-columns: repeat(6, 1fr);
   overflow: auto;

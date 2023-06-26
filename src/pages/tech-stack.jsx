@@ -12,15 +12,21 @@ export default function TechStack() {
   ];
   const techStack = [
     "react",
+    "node",
+    "postgresql",
+    "nest",
     "javascript",
     "typescript",
     "css",
     "html",
+    "nginx",
+    "mariadb",
     "github",
     "git",
     "tailwind",
     "vscode",
     "c",
+    "sass",
     "c++",
     "docker",
   ];

@@ -3,7 +3,7 @@
   flex-direction: column;
   font-size: 2rem;
   gap: 2rem;
-  width: 98%;
+  width: 80%;
   max-width: 1000px;
   padding: 2rem;
 }
@@ -78,7 +78,11 @@ textarea {
 
 @media screen and (max-width: 768px) {
   .contact {
+    /* display: none; */
+    padding: 2rem;
     font-size: small;
-    max-width: 500px;
+    width: 98%;
+    /* align-items: start; */
+    /* max-width: 100%; */
   }
 }
