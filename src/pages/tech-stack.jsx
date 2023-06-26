@@ -26,9 +26,12 @@ export default function TechStack() {
     "tailwind",
     "vscode",
     "c",
+    "prisma",
     "sass",
+    "shell",
     "c++",
     "docker",
+    "mui",
   ];
   return (
     <Layout className="tech-stack">
