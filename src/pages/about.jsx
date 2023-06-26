@@ -4,7 +4,7 @@ import Layout from "./layout";
 export default function About() {
   const education = [
     {
-      title: "front-end developer",
+      title: "Software Engineering",
       place: "1337 Conding School - 42 network",
       date: "2021 - present",
     },
