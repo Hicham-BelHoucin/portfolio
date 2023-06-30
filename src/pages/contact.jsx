@@ -56,9 +56,9 @@ export default function Contact() {
   return (
     <Layout className="about">
       <div className="contact">
-        <h1>Reach out me</h1>
         {!sent ? (
           <>
+            <h1>Reach out me</h1>
             <div className="email-name slide-in-bck-right">
               <Input
                 label="Name"
