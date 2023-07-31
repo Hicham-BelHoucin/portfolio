@@ -21,7 +21,7 @@ export default function About() {
         <div className="about-heading">
           <h1 className="slide-in-bck-left">About</h1>
           <p className="about-pragraph slide-in-bck-right">
-            I'm Hicham Bel Houcin, a 19-year-old software developer with a
+            I'm Hicham Bel Houcin, a 20-year-old software developer with a
             passion for continuous learning. I am enthusiastic, self-motivated,
             reliable, responsible, and hardworking. I work well both in a team
             environment and independently.
