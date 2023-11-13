@@ -1,5 +1,5 @@
 import Button from "./../components/button";
-import { Instagram, Linkedin, Twitter, Github, Facebook } from "lucide-react";
+import { Instagram, Linkedin, Twitter, Github } from "lucide-react";
 
 export default function Home() {
     return (
@@ -18,11 +18,18 @@ export default function Home() {
                     intuitive, dynamic user experiences.
                 </p>
                 <div className="hidden md:flex gap-4">
-                    <Instagram size={32} />
-                    <Linkedin size={32} />
-                    <Twitter size={32} />
-                    <Github size={32} />
-                    <Facebook size={32} />
+                    <a href="https://instagram.com/hicham_belhoucin">
+                        <Instagram size={32} />
+                    </a>
+                    <a href="https://linkedin.com/in/hicham-bel-houcin">
+                        <Linkedin size={32} />
+                    </a>
+                    <a href="https://twitter.com/HichamBelhoucin">
+                        <Twitter size={32} />
+                    </a>
+                    <a href="https://github.com/Hicham-BelHoucin/">
+                        <Github size={32} />
+                    </a>
                 </div>
                 <div className="hidden md:block">
                     <Button>
@@ -38,11 +45,18 @@ export default function Home() {
                 className="w-full md:w-[70%] md:h-[70%] object-contain"
             />
             <div className="md:hidden flex gap-4 w-full justify-center">
-                <Instagram size={32} />
-                <Linkedin size={32} />
-                <Twitter size={32} />
-                <Github size={32} />
-                <Facebook size={32} />
+                <a href="https://instagram.com/hicham_belhoucin">
+                    <Instagram size={32} />
+                </a>
+                <a href="https://linkedin.com/in/hicham-bel-houcin">
+                    <Linkedin size={32} />
+                </a>
+                <a href="https://twitter.com/HichamBelhoucin">
+                    <Twitter size={32} />
+                </a>
+                <a href="https://github.com/Hicham-BelHoucin/">
+                    <Github size={32} />
+                </a>
             </div>
             <div className="md:hidden block">
                 <Button>
