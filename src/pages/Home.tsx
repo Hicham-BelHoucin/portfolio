@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Twitter, Github, Facebook } from "lucide-react";
 
 export default function Home() {
     return (
-        <div className="flex container items-center justify-center gap-4 h-full text-white px-8 mx-auto flex-wrap md:flex-nowrap py-8">
+        <div className="flex container bg-[#31065A] items-center justify-center gap-4 h-full text-white px-8 mx-auto flex-wrap md:flex-nowrap py-8">
             <div className="flex flex-col items-center justify-center gap-4 text-center">
                 <h1 className="text-white text-xl md:text-6xl font-semibold">
                     Hi👋, I'm <span className=" text-primary-500 font-bold">Hicham</span>
