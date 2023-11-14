@@ -136,7 +136,7 @@ export default function Projects() {
                     </div>
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4 ">
-                        {projects.map((item, i) => {
+                        {projects && projects.map((item, i) => {
                             return (
                                 <Project
                                     key={i}

@@ -9,7 +9,7 @@ const Links = [
     { title: "Tech Stack", href: "/tech-stack" },
     { title: "My Services", href: "/my-services" },
     { title: "Projects", href: "/projects" },
-    { title: "Contact", href: "/contact" },
+    // { title: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
