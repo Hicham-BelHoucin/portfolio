@@ -8,7 +8,7 @@ export default function TechStack() {
         { name: 'postgresql', percentage: 30 },
         { name: 'nest', percentage: 50 },
         { name: 'javascript', percentage: 80 },
-        { name: 'typescript', percentage: 80 },
+        { name: 'Typescript', percentage: 80 },
         { name: 'css', percentage: 80 },
         { name: 'html', percentage: 80 },
         { name: 'nginx', percentage: 30 },
