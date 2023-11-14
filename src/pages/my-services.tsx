@@ -24,7 +24,7 @@ const Service = ({ icon, title, description }: {
     description: string;
 }) => {
     return (
-        <div className="max-w-md flex flex-col justify-center items-center p-4 gap-4 bg-white border border-gray-200 rounded-lg shadow text-black">
+        <div className="max-w-md max-h-[500px] h-full flex flex-col justify-center items-center p-4 gap-4 bg-white border border-gray-200 rounded-lg shadow text-black">
             <img src={icon} alt="" className=" w-16 object-cover" />
             <div className="text-xl font-bold text-[#170550]">{title}</div>
             <div className=" text-[#170550] text-center max-h-40 md:max-h-60 overflow-y-auto">
@@ -39,7 +39,7 @@ export default function MyServices() {
     return (
         <div className="flex flex-col container items-center gap-8 justify-center text-white p-8 m-auto">
             <Heading title="My Services" />
-            <div className="flex items-center justify-center gap-16 flex-col md:flex-row">
+            <div className="grid place-items-center justify-center gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {
                     services.map((service) => (
                         <Service
