@@ -81,40 +81,46 @@ export default function Contact() {
                     </div>
                 </div>
                 <div className="h-full w-full flex flex-col items-center justify-center gap-4">
-                    <Input placeholder="Full Name"
-                        onChange={(e) => setData({ ...data, name: e.target.value })}
-                        value={data.name}
-                    />
-                    <Input placeholder="Email Address"
-                        onChange={(e) => setData({ ...data, email: e.target.value })}
-                        value={data.email}
-                    />
-                    <div className="flex w-full gap-4">
-                        <Input className="w-full" placeholder="Phone Number"
-                            onChange={(e) => setData({ ...data, Phone: e.target.value })}
-                            value={data.Phone}
-                        />
-                        <Input className="w-full" placeholder="Subject"
-                            onChange={(e) => setData({ ...data, subject: e.target.value })}
-                            value={data.subject}
-                        />
-                    </div>
-                    <Input placeholder="Your Message" className=" h-24"
-                        onChange={(e) => setData({ ...data, message: e.target.value })}
-                        value={data.message}
-                    />
-                    <Button className="!px-16" onClick={sendEmail}>
-                        Send
-                    </Button>
+                    {!sent ? (
+                        <>
+                            <Input placeholder="Full Name"
+                                onChange={(e) => setData({ ...data, name: e.target.value })}
+                                value={data.name}
+                            />
+                            <Input placeholder="Email Address"
+                                onChange={(e) => setData({ ...data, email: e.target.value })}
+                                value={data.email}
+                            />
+                            <div className="flex w-full gap-4">
+                                <Input className="w-full" placeholder="Phone Number"
+                                    onChange={(e) => setData({ ...data, Phone: e.target.value })}
+                                    value={data.Phone}
+                                />
+                                <Input className="w-full" placeholder="Subject"
+                                    onChange={(e) => setData({ ...data, subject: e.target.value })}
+                                    value={data.subject}
+                                />
+                            </div>
+                            <Input placeholder="Your Message" className=" h-24"
+                                onChange={(e) => setData({ ...data, message: e.target.value })}
+                                value={data.message}
+                            />
+                            <Button className="!px-16" onClick={sendEmail}>
+                                Send
+                            </Button>
 
-                    {sent && (
+                        </>
+                    ) : (
+
                         <div>
                             <div className="text-green-500">Your message has been sent successfully</div>
                             <Button className="!px-16" onClick={() => setSent(false)}>
                                 Send another message
                             </Button>
                         </div>
-                    )}
+                    )
+
+                    }
                 </div>
             </div>
         </div>
