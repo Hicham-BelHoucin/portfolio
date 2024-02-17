@@ -101,7 +101,7 @@ export default function Projects() {
             const getAll = async () => {
                 const projectsName = await getProjectsName();
 
-                if (!projectName) {
+                if (!projectsName) {
                     setLoading(false);
                     return ;
                 }
