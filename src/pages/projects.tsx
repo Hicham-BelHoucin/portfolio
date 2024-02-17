@@ -45,6 +45,7 @@ export default function Projects() {
                     );
                     if (response.ok) {
                         const data = await response.json();
+                        if (!data) return []
                         return data.map((item: any) => item.name);
                     } else {
                         throw new Error("Failed to fetch projects");
@@ -100,6 +101,10 @@ export default function Projects() {
             const getAll = async () => {
                 const projectsName = await getProjectsName();
 
+                if (!projectName) {
+                    setLoading(false);
+                    return ;
+                }
                 projectsName.map(async (item: string, i: number) => {
                     if (item === "Hicham-BelHoucin") return;
                     const info = await fetchProjectData(item);
