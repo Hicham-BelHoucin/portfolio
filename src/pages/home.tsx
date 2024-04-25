@@ -153,7 +153,7 @@ const Card = ({
 }
 
 export default function Home() {
-    const [selectedSkill, setSelectedSkill] = useState<string>("React");
+    const [selectedSkill, setSelectedSkill] = useState<string>("");
     const [target, setTarget] = useState<string>("");
 
     return (
