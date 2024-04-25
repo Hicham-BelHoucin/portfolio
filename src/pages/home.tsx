@@ -192,7 +192,9 @@ export default function Home() {
                         <span className="">1 year of</span>
                         <span className="text-white text-6xl font-bold">XP</span>
                         <span>with the most popular ecosystem</span>
-                        <span>frontend</span>
+                        <span>
+                            full stack development, from the front-end to the back-end.
+                        </span>
                     </div>
                 </div>
                 <div className="w-full p-4 md:p-0 md:w-[50%]">
