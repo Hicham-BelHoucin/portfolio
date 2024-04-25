@@ -1,101 +1,72 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import Button from "../button";
-import { Menu, X } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
+import { FaInstagramSquare } from "react-icons/fa";
+import { GrInstagram } from "react-icons/gr";
+
+/*
+    https://github.com/Hicham-BelHoucin/
+    https://linkedin.com/in/hicham-bel-houcin
+    https://instagram.com/hicham_belhoucin
+    https://twitter.com/HichamBelhoucin
+*/
 
 const Links = [
     { title: "Home", href: "/" },
-    { title: "About", href: "/about" },
-    { title: "Tech Stack", href: "/tech-stack" },
-    { title: "My Services", href: "/my-services" },
-    { title: "Projects", href: "/projects" },
+    { title: "Education", href: "/education" },
+    { title: "Experience", href: "/experience" },
+    // { title: "My Services", href: "/my-services" },
+    // { title: "Projects", href: "/projects" },
     // { title: "Contact", href: "/contact" },
 ];
+
+const Item = ({
+    title,
+    href,
+    isActive,
+}: {
+    title: string;
+    href: string;
+    isActive: boolean;
+}) => {
+    return (
+        <a
+            className={twMerge(
+                "h-10 md:h-16 text-sm md:text-base flex  items-center justify-center text-[#8A72C5] ",
+                isActive && "text-white"
+            )}
+            href={href}
+            key={title}
+        >
+            {title}
+        </a>
+    );
+};
 
 const Navbar = () => {
     const currentPageURL = window.location.href.split("/").pop();
 
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    console.log(currentPageURL);
 
     return (
-        <nav className=" bg-[#170550] h-16">
-            <div className="container md:max-w-5xl mx-auto md:px-8">
-                <div className="relative flex items-center justify-between md:justify-around h-16 px-4  ">
-
-                    <div className="text-white font-bold text-sm xl:text-base">
-                        Hicham <span className="text-primary-500">Bel Houcin</span>
-                    </div>
-
-                    <Button
-                        className="md:hidden text-white"
-                        variant="text"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? <X /> : <Menu />}
-                    </Button>
-
-                    <div className="w-full md:flex-1 md:flex md:items-center md:justify-center items-stretch justify-start hidden">
-                        <div className="hidden sm:block">
-                            <div className="flex space-x-4">
-                                {Links.map((link) => (
-                                    <a
-                                        key={link.title}
-                                        href={link.href}
-                                        className={twMerge(
-                                            `text-white px-3 py-2 rounded-md text-sm font-medium`,
-                                            link.href === "/" + currentPageURL &&
-                                            "relative text-primary-500 before:absolute before:w-2 before:h-2 before:bottom-0 before:left-1/2 before:transform before:-translate-x-1  before:rounded-full before:bg-primary-500 before:text-primary-500 before:content-['']"
-                                        )}
-                                    >
-                                        {link.title}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <Button
-                        className="hidden text-sm md:text-base md:block text-white"
-                        variant="primary"
-                        onClick={() => {
-                            window.location.href = "/contact";
-                        }}
-                    >
-                        Contact me
-                    </Button>
-                </div>
-                {isMenuOpen && (
-                    <div className="flex-1 absolute top-10 left-0 w-full m-auto md:hidden flex flex-col align-center justify-end gap-2 p-4 z-10 bg-[#170550]">
-                        {Links.map((link) => (
-                            <div className="w-full"
-                                key={link.title}
-                            >
-                                <a
-                                    href={link.href}
-                                    className={twMerge(
-                                        `text-white px-3 py-2 rounded-md text-sm font-medium w-fit `,
-                                        link.href === "/" + currentPageURL &&
-                                        "text-primary-500"
-
-                                    )}
-                                >
-                                    {link.title}
-                                </a>
-                                <div className="w-[90%] h-[1px] bg-gray-600 m-auto"></div>
-                            </div>
-                        ))}
-                        <Button
-                            variant="primary"
-                            onClick={() => {
-                                window.location.href = "/contact";
-                            }}
-                            className="max-w-[200px] m-auto"
-                        >
-                            Contact me
-                        </Button>
-                    </div>
-                )}
-            </div>
+        <nav className="bg-[#131315] flex gap-2 md:gap-8 px-2 md:px-4 h-16 min-w-[200px] rounded-full absolute top-4 left-1/2 transform -translate-x-1/2 items-center z-10">
+            {Links.map((link) => (
+                <Item
+                    key={link.title}
+                    title={link.title}
+                    href={link.href}
+                    isActive={link.href.replace("/", "") === currentPageURL}
+                />
+            ))}
+            <a href="https://github.com/Hicham-BelHoucin/"><FaGithub className="h-4 w-4 md:h-6 md:w-6 text-[#8A72C5]" /></a>
+            <a href="https://linkedin.com/in/hicham-bel-houcin"><FaLinkedin className="h-4 w-4 md:h-6 md:w-6 text-[#8A72C5]" /></a>
+            <a href="mailto:belhoucin.hicham@gmail.com"><BiLogoGmail className="h-4 w-4 md:h-6 md:w-6 text-[#8A72C5]" /></a>
+            <a href="https://instagram.com/hicham_belhoucin">
+                <GrInstagram className="h-4 w-4 md:h-6 md:w-6 text-[#8A72C5]" />
+            </a>
         </nav>
     );
 };

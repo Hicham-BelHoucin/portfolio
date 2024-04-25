@@ -1,89 +1,9 @@
 /* Primary button */
 .button-primary {
-  @apply px-4 py-2 font-semibold text-white bg-primary-500 rounded-md shadow-md;
-}
-
-/* Primary button - hover */
-.button-primary:hover {
-  @apply bg-primary-600;
-}
-
-/* Primary button - focus */
-.button-primary:focus {
-  @apply outline-none ring-2 ring-primary-500;
+  @apply px-4 py-2 font-semibold bg-white text-[#0F0F10] rounded-full shadow-md;
 }
 
 /* Secondary button */
-.button-secondary {
-  @apply px-4 py-2 font-semibold text-primary-500 bg-white border border-primary-500 rounded-md shadow-md;
-}
-
-/* Secondary button - hover */
-.button-secondary:hover {
-  @apply bg-primary-50;
-}
-
-/* Secondary button - focus */
-.button-secondary:focus {
-  @apply outline-none ring-2 ring-primary-500;
-}
-
-/* Danger button */
-.button-danger {
-  @apply px-4 py-2 font-semibold text-white bg-red-500 rounded-md shadow-md;
-}
-
-/* Danger button - hover */
-.button-danger:hover {
-  @apply bg-red-600;
-}
-
-/* Danger button - focus */
-.button-danger:focus {
-  @apply outline-none ring-2 ring-red-500;
-}
-
-/* Disabled button */
-.button-disabled {
-  @apply px-4 py-2 font-semibold text-gray-500 bg-gray-300 rounded-md shadow-md cursor-not-allowed;
-}
-
-/* Disabled button - focus */
-.button-disabled:focus {
-  @apply outline-none ring-2 ring-gray-500;
-}
-
-/* Large button */
-.button-lg {
-  @apply px-6 py-3 text-lg;
-}
-
-/* Small button */
-.button-sm {
-  @apply px-3 py-1 text-sm;
-}
-
-/* Block button */
-.button-block {
-  @apply block w-full;
-}
-
-/* Rounded button */
-.button-rounded {
-  @apply rounded-full;
-}
-
-/* Button with icon */
-.button-icon {
-  @apply flex items-center space-x-2;
-}
-
-/* Button with icon - left */
-.button-icon-left {
-  @apply flex-row-reverse;
-}
-
-/* Button with icon - right */
-.button-icon-right {
-  @apply flex-row;
+.button-text {
+  @apply px-4 py-2 font-semibold text-[#8A72C5] rounded-md shadow-md;
 }

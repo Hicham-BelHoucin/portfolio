@@ -1,0 +1,133 @@
+{
+  "frontend": [
+    {
+      "label": "React",
+      "icon": "/react.png"
+    },
+    {
+      "label": "JavaScript",
+      "icon": "/javascript.png"
+    },
+    {
+      "label": "TypeScript",
+      "icon": "/typescript.png"
+    },
+    {
+      "label": "HTML",
+      "icon": "/html.png"
+    },
+    {
+      "label": "CSS",
+      "icon": "/css.png"
+    },
+    {
+      "label": "Tailwind",
+      "icon": "/tailwind.png"
+    },
+    {
+      "label": "Material-UI",
+      "icon": "/mui.png"
+    }
+  ],
+  "backend": [
+    {
+      "label": "Node",
+      "icon": "/node.png"
+    },
+    {
+      "label": "Nest",
+      "icon": "/nest.png"
+    },
+    {
+      "label": "PostgreSQL",
+      "icon": "/postgresql.png"
+    },
+    {
+      "label": "MariaDB",
+      "icon": "/mariadb.png"
+    },
+    {
+      "label": "Prisma",
+      "icon": "/prisma.png"
+    }
+  ],
+  "languages": [
+    {
+      "label": "JavaScript",
+      "icon": "/javascript.png"
+    },
+    {
+      "label": "TypeScript",
+      "icon": "/typescript.png"
+    },
+    {
+      "label": "C",
+      "icon": "/c.png"
+    },
+    {
+      "label": "C++",
+      "icon": "/c++.png"
+    },
+    {
+      "label": "HTML",
+      "icon": "/html.png"
+    },
+    {
+      "label": "CSS",
+      "icon": "/css.png"
+    }
+  ],
+  "devops": [
+    {
+      "label": "Nginx",
+      "icon": "/nginx.png"
+    },
+    {
+      "label": "Docker",
+      "icon": "/docker.png"
+    },
+    {
+      "label": "Shell",
+      "icon": "/shell.png"
+    },
+    {
+      "label": "Git",
+      "icon": "/git.png"
+    },
+    {
+      "label": "GitHub",
+      "icon": "/github.png"
+    },
+    {
+      "label": "VSCode",
+      "icon": "/vscode.png"
+    }
+  ],
+  "skills": [
+    {
+      "title": "React",
+      "icon": "/react.png",
+      "bgColor": "#7D9CA5"
+    },
+    {
+      "title": "JavaScript",
+      "icon": "/javascript.png",
+      "bgColor": "#C3C99E"
+    },
+    {
+      "title": "TypeScript",
+      "icon": "/typescript.png",
+      "bgColor": "#3178C6"
+    },
+    {
+      "title": "Node",
+      "icon": "/node.png",
+      "bgColor": "#68A063"
+    },
+    {
+      "title": "Next JS",
+      "icon": "/nextjs.png",
+      "bgColor": "#C2C2C2"
+    }
+  ]
+}

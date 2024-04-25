@@ -3,7 +3,7 @@ import React from 'react';
 import './button.css';
 
 type ButtonProps = {
-    variant?: 'primary' | 'secondary' | 'outline' | 'text';
+    variant?: 'primary' | 'text';
     children: React.ReactNode;
     onClick?: () => void;
     className?: string;

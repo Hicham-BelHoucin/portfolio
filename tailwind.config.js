@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        "3xl": "1600px",
+      },
       fontFamily: {
         montserrat: ["Montserrat"],
         lato: ["Lato"],
@@ -16,7 +19,6 @@ module.exports = {
           300: "#ccc4f4",
           400: "#bcacec",
           500: "#F86F03",
-          // 500: "#643cd4",
           600: "#ac9cec",
           700: "#e4e0f8",
           800: "#9c84e4",
