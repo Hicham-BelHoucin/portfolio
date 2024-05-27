@@ -162,7 +162,7 @@ export default function Home() {
                 <div className="text-left w-full order-2 md:order-1">
                     <h1 className="text-xl md:text-5xl font-bold">HI, I'm Hicham</h1>
                     <p className="text-md md:text-2xl text-[#6E6E6E]">
-                        During these <span className="text-white">1 year</span> as{" "}
+                        During this <span className="text-white">1 year</span> as{" "}
                         <span className="text-white">Full Stack Developer</span>. My
                         role has extended beyond coding to effective communication with
                         various departments, to define new features and spearheading the
