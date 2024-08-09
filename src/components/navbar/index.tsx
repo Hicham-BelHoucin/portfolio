@@ -16,8 +16,8 @@ import { IoMenu } from "react-icons/io5";
 
 const Links = [
     { title: "Home", href: "/" },
-    { title: "Education", href: "/education" },
-    { title: "Experience", href: "/experience" },
+    { title: "About", href: "/about" },
+    { title: "Career", href: "/career" },
     { title: "Contact", href: "/contact" },
     // { title: "My Services", href: "/my-services" },
     // { title: "Projects", href: "/projects" },

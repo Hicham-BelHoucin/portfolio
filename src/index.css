@@ -76,3 +76,55 @@ html {
     transform: scaleY(0.5);
   }
 }
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background-color: #510ac2;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-content::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 1rem;
+  width: 2px;
+  height: 100%;
+  background-color: #666666;
+}
+
+.timeline-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item:last-child .timeline-content {
+  border-left: none;
+}
+
+.timeline-item:last-child::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: -1rem;
+  width: 2px;
+  height: 120%;
+  background-color: #666666;
+}

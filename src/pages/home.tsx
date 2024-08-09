@@ -1,301 +1,175 @@
-import { twMerge } from "tailwind-merge";
-import Button from "../components/button";
-import React, { useRef, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+
+
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { GrInstagram } from "react-icons/gr";
+import { twMerge } from "tailwind-merge";
 import { BiArrowToRight } from "react-icons/bi";
 import { FaSpotify } from "react-icons/fa6";
 import { LuDownload } from "react-icons/lu";
-
-import data from "./data.json";
-const { frontend, backend, languages, devops, skills } = data;
-
-/*
-    https://github.com/Hicham-BelHoucin/
-    https://instagram.com/hicham_belhoucin
-    https://linkedin.com/in/hicham-bel-houcin
-    https://twitter.com/HichamBelhoucin
-*/
+import fetchTopTracks from "../tools/spotify";
+import Card from "../components/card";
 
 
-const SkillCard = ({
-    title,
-    icon,
-    bgColor,
-    setSelectedSkill,
-    selectedSkill,
+const ToggleSwitch = () => {
+    return (
+        <label className="inline-flex items-center cursor-pointer">
+            <input
+                type="checkbox"
+                value=""
+                className="sr-only peer"
+                defaultChecked
+                disabled
+            />
+            <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary-300  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+        </label>
+    );
+};
 
-}: {
-    title: string;
-    icon: string;
-    bgColor: string;
-    setSelectedSkill: (skill: string) => void;
-    selectedSkill: string;
 
-}) => {
-    const targetRef = useRef<HTMLDivElement>(null);
+export default function App() {
+    const [topTrack, setTopTrack] = React.useState<{
+        name: string;
+        artists: {
+            name
+            : string
+        }[];
+    }>({
+        name: 'MARADONA',
+        artists: [{ name: 'Stormy' }]
+    });
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setSelectedSkill(title);
-                }
-            },
-            {
-                root: null, // viewport
-                rootMargin: "0px", // no margin
-                threshold: 0.7, // at least 50% of the target is visible
-            }
-        );
+    // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
+    React.useEffect(() => {
 
-        if (targetRef.current) {
-            observer.observe(targetRef.current);
-        }
+        (async () => {
+            setTopTrack(await fetchTopTracks());
+        })()
 
-        // Cleanup observer
-        return () => {
-            if (targetRef.current) {
-                observer.unobserve(targetRef.current);
-            }
-        };
     }, []);
 
-
-    useEffect(() => {
-
-
-
-        const scrollIntoViewIfNeeded = () => {
-            if (title === selectedSkill && targetRef.current) {
-                targetRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
-        };
-
-        scrollIntoViewIfNeeded();
-
-
-    }, [selectedSkill]);
+    const [active, setActive] = React.useState(0);
+    const [state, setState] = React.useState<"education" | "experience">("education");
 
     return (
-        <div
-            ref={targetRef}
-            className={`flex flex-shrink-0 justify-center px-10 flex-col gap-4 w-[409px] h-[277px] rounded-[5rem]`}
-            style={{ backgroundColor: bgColor }}
-        >
-            <img src={icon} alt="Skill" className="w-16" />
-            <h1 className="text-2xl font-bold text-black">{title}</h1>
-        </div>
-    );
-};
 
-const ProgressBar = ({
-    selectedSkill,
-    skills,
-    setSelectedSkill,
-}: {
-    selectedSkill: string;
-    skills: {
-        title: string;
-        icon: string;
-        bgColor: string;
-    }[];
-    setSelectedSkill: (skill: string) => void;
-}) => {
-    return (
-        <div className="flex gap-2 mt-4">
-            {skills.map((skill) => {
-                return (
-                    <div
-                        key={skill.title}
-                        onClick={() => {
-                            setSelectedSkill(skill.title);
-                        }}
-                        className={twMerge(
-                            "cursor-pointer w-[20px] h-3 bg-[#606060] text-[#606060] rounded-full transition-width duration-300",
-                            selectedSkill === skill.title && "bg-white text-white w-[50px]"
-                        )}
-                    ></div>
-                );
-            })}
-        </div>
-    );
-};
-
-
-
-const Card = ({
-    className,
-    children,
-}: {
-    children: React.ReactNode;
-    className?: string;
-}) => {
-    return (
-        <div
-            className={twMerge(
-                "flex flex-col items-center justify-center bg-background-900  p-4 text-text-100 max-w-md rounded-xl overflow-hidden",
-                className
-            )}
-        >
-            {children}
-        </div>
-    );
-};
-
-const Typewriter = ({
-    text,
-    delay = 100,
-}: {
-    text: string;
-    delay?: number;
-}) => {
-    const [currentText, setCurrentText] = React.useState("");
-    const [currentIndex, setCurrentIndex] = React.useState(0);
-
-    React.useEffect(() => {
-        if (currentIndex < text.length) {
-            const timeout = setTimeout(() => {
-                setCurrentText((prevText) => prevText + text[currentIndex]);
-                setCurrentIndex((prevIndex) => prevIndex + 1);
-            }, delay);
-
-            return () => clearTimeout(timeout);
-        }
-    }, [currentIndex, delay, text]);
-
-    return <span>{currentText}</span>;
-}
-
-export default function Home() {
-    const [selectedSkill, setSelectedSkill] = useState<string>("");
-    const [target, setTarget] = useState<string>("");
-    const [state, setState] = useState<"experience" | "education">("experience");
-    const [active, setActive] = useState(0);
-
-
-    return (
-        <div>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
-                <h1 className="text-3xl">About Me</h1>
-                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
+        <div className="grid m-auto gap-2 md:gap-4 md:grid-cols-2 xl:grid-cols-3 py-4 p-2">
+            <div className="grid gap-2 md:gap-4">
+                <Card className="gap-2 md:gap-4">
                     <img
-                        src="/my-image.jpg"
+                        src="image-1.png"
                         alt="Profile"
-                        className="col-span-1 rounded-xl max-w-sm object-cover"
+                        className="rounded-xl w-32 h-32 object-cover"
                     />
-                    <div
-                        className="text-center col-span-2 overflow-hidden text-text-500"
-                    >
-                        <h1 className="text-2xl text-white font-bold">Hicham Bel Houcin</h1>
-                        <Typewriter
-                            text="I'm a junior software engineer from Morocco passionate about creating dynamic and engaging user experiences. I specialize in React, Node.js, JavaScript, TypeScript, HTML, and CSS. Having studied at 1337 Coding School, I bring a strong foundation in Git, C, C++, PostgreSQL, Prisma, and Docker. Let's work together to bring great solutions to life!"
-                            delay={50}
-                        />
+                    <div className="flex justify-center text-center items-center gap-2 md:gap-4">
+                        <div>
+                            <h1 className="text-xl md:text-2xl text-white font-bold">
+                                Hicham Bel Houcin
+                            </h1>
+                            <h2 className=" md:text-xl text-neutral-400 font-normal">
+                                Junior Software Engineer
+                            </h2>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
-                <h1 className="text-3xl">Project Showcase</h1>
-                <p>
-                    Here are some of the projects I have worked on. Click on the arrow to
-                    view more details.
-                </p>
-                <div className="flex gap-2 md:gap-4">
-                    <Button className={active === 0 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(0)
-                    }}>
-                        All
-                    </Button>
-                    <Button className={active === 1 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(1)
-                    }}>
-                        Personal
-                    </Button>
-                    <Button className={active === 2 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(2)
-                    }}>
-                        Educational
-                    </Button>
-
-                    <Button className={active === 3 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(3)
-                    }}>
-                        Professional
-                    </Button>
-
-                </div>
-                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
-                    {new Array(3).fill(0).map((_, index) => (
-                        <Card className="p-0 relative">
-                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
-                            <img
-                                src="/Rectangle 24.png"
-                                alt="Project"
-                                className="rounded-xl w-full object-cover"
-                            />
-                            <div className="p-4">
-                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
-                                <h2 className="text-lg text-neutral-400 font-normal">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                                    hic eius eum voluptatum pariatur perferendis accusantium.
-                                    Error doloremque eos placeat nihil repellat tenetur nobis
-                                    excepturi cum atque. Est, fuga dolor.
-                                </h2>
-                            </div>
+                    <div className="flex gap-1 md:gap-4">
+                        <Card>
+                            <h1 className="text-xl md:text-2xl text-white font-bold">21</h1>
+                            <h2 className="md:text-lg text-neutral-400 font-normal">Years</h2>
                         </Card>
-                    ))}
-                </div>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
-                <h1 className="text-3xl">Education & Career</h1>
-                <p>
-                    Here are some of the projects I have worked on. Click on the arrow to
-                    view more details.
-                </p>
-                {/* <LandingPageSelector state={state} setState={setState} selectable /> */}
-                <div className="flex gap-2 md:gap-4">
-                    <Button className={state === "experience" ? "active-button" : "inactive-button"} onClick={() => {
-                        setState("experience")
-                    }}>
-                        Experience
-                    </Button>
-                    <Button className={state === "education" ? "active-button" : "inactive-button"} onClick={() => {
-                        setState("education")
-                    }}>
-                        Education
-                    </Button>
-
-                </div>
-                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
-                    {new Array(3).fill(0).map((_, index) => (
-                        <Card className="p-0 relative">
-                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
-
-                            <img
-                                src="/Rectangle 24.png"
-                                alt="Project"
-                                className="rounded-xl w-full object-cover"
-                            />
-                            <div className="p-4">
-                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
-                                <h2 className="text-lg text-neutral-400 font-normal">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                                    hic eius eum voluptatum pariatur perferendis accusantium.
-                                    Error doloremque eos placeat nihil repellat tenetur nobis
-                                    excepturi cum atque. Est, fuga dolor.
-                                </h2>
-                            </div>
+                        <Card>
+                            <h1 className="text-xl md:text-2xl text-white font-bold">Morocco</h1>
+                            <h2 className="md:text-lg text-neutral-400 font-normal">Location</h2>
                         </Card>
-                    ))}
-                </div>
+                        <Card>
+                            <h1 className="text-xl md:text-2xl text-white font-bold">English</h1>
+                            <h2 className="md:text-lg text-neutral-400 font-normal">Language</h2>
+                        </Card>
+                    </div>
+                </Card>
+                <Card className="p-0 rounded-2xl flex flex-row justify-around items-center">
+                    <div className="text-center grid place-items-center gap-2">
+                        <h1 className="text-xs md:text-sm text-neutral-400  font-normal">MORE ABOUT ME</h1>
+                        <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>
+                        <LuDownload className="text-xl md:text-5xl text-text-500" />
+                    </div>
+                    <img src="meme1.webp" alt="" className="w-32" />
+                </Card>
             </div>
+            <div className="grid gap-2 md:gap-4">
+                <Card className="p-0 rounded-2xl flex flex-row justify-around items-center">
+                    <img src="mymac1.webp" alt="" className="w-32" />
+                    <div className="text-center grid place-items-center gap-2">
+                        <ToggleSwitch />
+                        <h1 className="text-xl md:text-2xl text-white font-bold">Available</h1>
+                        <h2 className="md:text-lg text-neutral-400 font-normal">For work</h2>
+                    </div>
+                </Card>
+                <Card className="rounded-2xl flex flex-row justify-around items-center">
+                    <div className="text-center grid place-items-center gap-2">
+                        <FaSpotify color="#62dabe" size={42} />
+                        <div className="flex items-center gap-2 text-[#62dabe]">
+                            <div className="wave-container">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 100 100"
+                                    className="wave"
+                                >
+                                    <rect className="wave-rect" x="10" y="30" width="5" height="40" />
+                                    <rect className="wave-rect" x="25" y="20" width="5" height="60" />
+                                    <rect className="wave-rect" x="40" y="10" width="5" height="80" />
+                                    <rect className="wave-rect" x="55" y="20" width="5" height="60" />
+                                    <rect className="wave-rect" x="70" y="30" width="5" height="40" />
+                                </svg>
+                            </div>
+                            <p>
+                                Top Track
+                            </p>
+                        </div>
+                        <h1 className="text-2xl text-white font-bold">{topTrack?.artists[0].name}</h1>
+                        <h2 className="text-lg text-neutral-400 font-normal">{topTrack?.name}</h2>
+                    </div>
+                    <img src="IMG_42821.webp" alt="" className="w-32" />
+                </Card>
+                <div className="flex justify-between max-w-md gap-2 h-fit">
+                    <Card>
+                        <FaGithub className="text-3xl md:text-5xl text-text-500" />
+                    </Card>
+                    <Card>
+                        <FaLinkedin className="text-3xl md:text-5xl text-text-500" />
+                    </Card>
+                    <Card>
+                        <BiLogoGmail className="text-3xl md:text-5xl text-text-500" />
+                    </Card>
+                    <Card>
+                        <GrInstagram className="text-3xl md:text-5xl text-text-500" />
+                    </Card>
+                </div>
+                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-52 relative">
+                    <img
+                        src="/image (3).png"
+                        alt="Profile"
+                        className="spinning-image absolute right-[40%] md:-left-[60%] max-w-lg object-cover"
+                    />
+                    <BiArrowToRight className="absolute right-6 top-6 text-text-500 text-5xl" />
+                </Card>
+            </div>
+            <Card className="p-0 rounded-2xl relative">
+                <img
+                    src="/map.png"
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute  bg-text-800 h-14 xl:h-24 w-14 xl:w-24 rounded-full opacity-40"></div>
+                <img src="/emoji.png" alt="" className="absolute w-10 xl:w-20 " />
+            </Card>
         </div>
+
     );
 }
+
+
+
+
+
