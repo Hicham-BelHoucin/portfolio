@@ -1,5 +1,4 @@
 import Heading from "../components/heading";
-import { Phone, Mail, MapPin } from "lucide-react";
 import Input from "../components/input";
 import Button from "../components/button";
 import axios from "axios";
@@ -59,11 +58,11 @@ export default function Contact() {
             <div className="flex gap-6 items-center justify-center w-full max-w-6xl flex-col-reverse md:flex-row">
                 <div className="flex flex-col gap-4 w-full text-xs md:text-base">
                     <div className="flex items-center gap-4">
-                        <Phone size={24} />
+                        {/* <Phone size={24} /> */}
                         <div>Phone : +212 676793918</div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <Mail size={24} />
+                        {/* <Mail size={24} /> */}
                         <div>
                             Email :
                             <a
@@ -76,7 +75,7 @@ export default function Contact() {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <MapPin size={24} />
+                        {/* <MapPin size={24} /> */}
                         <div>Address : El Kasba Street, Imintanout City, Morocco</div>
                     </div>
                 </div>

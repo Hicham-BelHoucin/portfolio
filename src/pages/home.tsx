@@ -1,6 +1,14 @@
 import { twMerge } from "tailwind-merge";
 import Button from "../components/button";
 import React, { useRef, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
+import { GrInstagram } from "react-icons/gr";
+import { BiArrowToRight } from "react-icons/bi";
+import { FaSpotify } from "react-icons/fa6";
+import { LuDownload } from "react-icons/lu";
 
 import data from "./data.json";
 const { frontend, backend, languages, devops, skills } = data;
@@ -120,136 +128,174 @@ const ProgressBar = ({
     );
 };
 
+
+
 const Card = ({
-    title,
-    skills,
+    className,
+    children,
 }: {
-    title: string;
-    skills: {
-        label: string;
-        icon: string;
-    }[];
+    children: React.ReactNode;
+    className?: string;
 }) => {
     return (
-        <div className="w-[305px] border border-neutral-800 rounded-xl">
-            <div className="flex-col justify-center items-start gap-3 inline-flex p-8">
-                <div className="text-white text-base font-normal font-['Nunito']">{title}</div>
-                <div className="w-[200px] py-3.5 flex-col justify-center items-start gap-3.5 inline-flex">
-                    {skills.map((item) => (
-                        <div key={item.label} className="justify-start items-center gap-3.5 inline-flex">
-                            <div className="w-[34px] h-[35px] relative">
-                                <div className="w-[34px] h-[35px]  bg-neutral-800 rounded-full" />
-                                <div className="w-[19.43px] h-5 px-px py-0.5 left-[7px]  flex-col justify-center items-center inline-flex" />
-                                <img src={item.icon} alt="icons" className="w-[19.43px] -z-0 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="text-white text-base font-normal font-['Nunito']">{item.label}</div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <div
+            className={twMerge(
+                "flex flex-col items-center justify-center bg-background-900  p-4 text-text-100 max-w-md rounded-xl overflow-hidden",
+                className
+            )}
+        >
+            {children}
         </div>
     );
+};
 
+const Typewriter = ({
+    text,
+    delay = 100,
+}: {
+    text: string;
+    delay?: number;
+}) => {
+    const [currentText, setCurrentText] = React.useState("");
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+
+    React.useEffect(() => {
+        if (currentIndex < text.length) {
+            const timeout = setTimeout(() => {
+                setCurrentText((prevText) => prevText + text[currentIndex]);
+                setCurrentIndex((prevIndex) => prevIndex + 1);
+            }, delay);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [currentIndex, delay, text]);
+
+    return <span>{currentText}</span>;
 }
 
 export default function Home() {
     const [selectedSkill, setSelectedSkill] = useState<string>("");
     const [target, setTarget] = useState<string>("");
+    const [state, setState] = useState<"experience" | "education">("experience");
+    const [active, setActive] = useState(0);
+
 
     return (
         <div>
-            <section className="flex container bg-[#0C0C0D] items-center justify-center gap-4 text-white px-12 mx-auto flex-wrap md:flex-nowrap py-8 h-screen">
-                <div className="text-left w-full order-2 md:order-1">
-                    <h1 className="text-xl md:text-5xl font-bold">HI, I'm Hicham</h1>
-                    <p className="text-md md:text-2xl text-[#6E6E6E]">
-                        During this <span className="text-white">1 year</span> as{" "}
-                        <span className="text-white">Full Stack Developer</span>. My
-                        role has extended beyond coding to effective communication with
-                        various departments, to define new features and spearheading the
-                        development of new apps.
-                    </p>
-                    <div className="mt-8 flex items-center gap-4">
-                        <a className="mt-4" href="/my-resume.pdf">
-                            <Button variant="primary">Download CV</Button>
-                        </a>
-                        <a href="/experience">
-                            <Button variant="text">See experience</Button>
-                        </a>
-                    </div>
-                </div>
-                <div className="w-full grid place-items-center order-1 md:order-2">
-                    <img src="/Group 39.svg" alt="Hero" className="" />
-                </div>
-            </section>
-            <section className="flex flex-col md:flex-row container h-screen bg-[#0C0C0D] items-center justify-center gap-2 md:gap-4 text-white">
-                <div className="w-full relative h-full md:h-auto">
+            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
+                <h1 className="text-3xl">About Me</h1>
+                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
                     <img
-                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                        src="/Vector.svg"
-                        alt="Hero"
+                        src="/my-image.jpg"
+                        alt="Profile"
+                        className="col-span-1 rounded-xl max-w-sm object-cover"
                     />
-                    <div className="flex h-full md:h-auto flex-col text-xl text-[#6E6E6E] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <span className="">1 year of</span>
-                        <span className="text-white text-6xl font-bold">XP</span>
-                        <span>with the most popular ecosystem</span>
-                        <span>
-                            full stack development, from the front-end to the back-end.
-                        </span>
+                    <div
+                        className="text-center col-span-2 overflow-hidden text-text-500"
+                    >
+                        <h1 className="text-2xl text-white font-bold">Hicham Bel Houcin</h1>
+                        <Typewriter
+                            text="I'm a junior software engineer from Morocco passionate about creating dynamic and engaging user experiences. I specialize in React, Node.js, JavaScript, TypeScript, HTML, and CSS. Having studied at 1337 Coding School, I bring a strong foundation in Git, C, C++, PostgreSQL, Prisma, and Docker. Let's work together to bring great solutions to life!"
+                            delay={50}
+                        />
                     </div>
                 </div>
-                <div className="w-full p-4 md:p-0 md:w-[50%]">
-                    <div className="flex gap-6 overflow-y-auto scrollbar-hide select-none">
-                        {skills.map((skill) => (
-                            <SkillCard
-                                key={skill.title}
-                                title={skill.title}
-                                icon={skill.icon}
-                                bgColor={skill.bgColor}
-                                setSelectedSkill={setSelectedSkill}
-                                selectedSkill={selectedSkill}
-                            />
-                        ))}
-                    </div>
-                    <ProgressBar
-                        skills={skills}
-                        selectedSkill={selectedSkill}
-                        setSelectedSkill={setSelectedSkill}
-                    />
-                </div>
-            </section>
-            <section className="flex flex-col h-screen container mt-8 p-4 mx-auto text-left bg-[#0C0C0D] items-center justify-center gap-8 text-white">
-                <div className="flex flex-col justify-center items-center gap-4">
-                    <div className="text-purple-400 text-3xl md:text-7xl font-semibold font-['Raleway']">Javascript</div>
-                    <div className="text-purple-500 text-3xl md:text-7xl font-semibold font-['Raleway']">React</div>
-                    <div className="text-purple-500 text-3xl md:text-7xl font-semibold font-['Raleway']">Node Js</div>
-                    <div className="text-violet-700 text-3xl md:text-7xl  font-semibold font-['Raleway']">Coffee</div>
-                </div>
-            </section>
-            <section className="flex flex-col container mt-8 p-4 mx-auto text-left bg-[#0C0C0D] items-center justify-center gap-8 text-white">
-                <div className="text-xl md:text-5xl text-white flex flex-col text-left w-full">
-                    <span>These are the</span>
-                    <span>technologies I’ve been using</span>
-                </div>
-                <div className="w-full flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-16">
-                    <Card
-                        title="Front-end Engineer Design"
-                        skills={frontend}
-                    />
-                    <Card
-                        title="Back-end Engineer Design"
-                        skills={backend}
-                    />
-                    <Card
-                        title="Languages"
-                        skills={languages}
-                    />
-                    <Card
-                        title="DevOps"
-                        skills={devops}
-                    />
-                </div>
-            </section>
+            </div>
+            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
+                <h1 className="text-3xl">Project Showcase</h1>
+                <p>
+                    Here are some of the projects I have worked on. Click on the arrow to
+                    view more details.
+                </p>
+                <div className="flex gap-2 md:gap-4">
+                    <Button className={active === 0 ? "active-button" : "inactive-button"} onClick={() => {
+                        setActive(0)
+                    }}>
+                        All
+                    </Button>
+                    <Button className={active === 1 ? "active-button" : "inactive-button"} onClick={() => {
+                        setActive(1)
+                    }}>
+                        Personal
+                    </Button>
+                    <Button className={active === 2 ? "active-button" : "inactive-button"} onClick={() => {
+                        setActive(2)
+                    }}>
+                        Educational
+                    </Button>
 
+                    <Button className={active === 3 ? "active-button" : "inactive-button"} onClick={() => {
+                        setActive(3)
+                    }}>
+                        Professional
+                    </Button>
+
+                </div>
+                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
+                    {new Array(3).fill(0).map((_, index) => (
+                        <Card className="p-0 relative">
+                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
+                            <img
+                                src="/Rectangle 24.png"
+                                alt="Project"
+                                className="rounded-xl w-full object-cover"
+                            />
+                            <div className="p-4">
+                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
+                                <h2 className="text-lg text-neutral-400 font-normal">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                                    hic eius eum voluptatum pariatur perferendis accusantium.
+                                    Error doloremque eos placeat nihil repellat tenetur nobis
+                                    excepturi cum atque. Est, fuga dolor.
+                                </h2>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
+                <h1 className="text-3xl">Education & Career</h1>
+                <p>
+                    Here are some of the projects I have worked on. Click on the arrow to
+                    view more details.
+                </p>
+                {/* <LandingPageSelector state={state} setState={setState} selectable /> */}
+                <div className="flex gap-2 md:gap-4">
+                    <Button className={state === "experience" ? "active-button" : "inactive-button"} onClick={() => {
+                        setState("experience")
+                    }}>
+                        Experience
+                    </Button>
+                    <Button className={state === "education" ? "active-button" : "inactive-button"} onClick={() => {
+                        setState("education")
+                    }}>
+                        Education
+                    </Button>
+
+                </div>
+                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
+                    {new Array(3).fill(0).map((_, index) => (
+                        <Card className="p-0 relative">
+                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
+
+                            <img
+                                src="/Rectangle 24.png"
+                                alt="Project"
+                                className="rounded-xl w-full object-cover"
+                            />
+                            <div className="p-4">
+                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
+                                <h2 className="text-lg text-neutral-400 font-normal">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                                    hic eius eum voluptatum pariatur perferendis accusantium.
+                                    Error doloremque eos placeat nihil repellat tenetur nobis
+                                    excepturi cum atque. Est, fuga dolor.
+                                </h2>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
