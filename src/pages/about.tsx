@@ -46,7 +46,7 @@ const TimelineItem = ({ title, children }: {
             <div className="timeline-marker"></div>
             <div className="timeline-content px-4">
                 <h3 className="timeline-title">{title}</h3>
-                <p>{children}</p>
+                <div>{children}</div>
             </div>
         </div>
     );
@@ -73,13 +73,15 @@ export default function Home() {
     const [active, setActive] = useState(0);
 
     return (
-        <div className="flex flex-col gap-2 md:gap-4 items-center justify-center m-auto">
-            <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
-                <img
-                    src="/my-image.jpg"
-                    alt="Profile"
-                    className="col-span-1 rounded-xl max-w-sm object-cover"
-                />
+        <div className="flex flex-col gap-2 md:gap-4 items-center justify-center m-auto p-2 md:p-4">
+            <div className="grid place-items-center grid-cols-1 lg:grid-cols-3 items-center gap-2 md:gap-4">
+                <Card className="p-0 lg:max-w-sm">
+                    <img
+                        src="/20240626_170549_magicstudio_ylnj56zihm.png"
+                        alt="Profile"
+                        className="col-span-1 w-full rounded-xl object-cover"
+                    />
+                </Card>
                 <div className="col-span-2 flex flex-col gap-2 md:gap-4">
                     <Card className="col-span-2 max-w-5xl">
                         <div className="text-left col-span-2 overflow-hidden text-text-500">
@@ -96,22 +98,32 @@ export default function Home() {
                             </p>
                         </div>
                     </Card>
-                    <Card className="col-span-2 max-w-5xl">
-                        <div className="text-left col-span-2 overflow-hidden text-text-500 w-full">
-                            <h1 className="text-2xl text-white font-bold">Education</h1>
-                            <Timeline
-                                items={education.map((item) => ({
-                                    title: item.title,
-                                    content: (
-                                        <div>
-                                            <p>{item.type}</p>
-                                            <p>{item.startDate} - {item.endDate}</p>
-                                        </div>
-                                    ),
-                                }))}
-                            />
+                    <div className="col-span-2 max-w-5xl flex flex-col md:flex-row gap-2">
+                        <Card className="w-full flex-2 max-w-3xl">
+                            <div className="text-left col-span-2 overflow-hidden text-text-500 w-full">
+                                <h1 className="text-2xl text-white font-bold">Education</h1>
+                                <Timeline
+                                    items={education.map((item) => ({
+                                        title: item.title,
+                                        content: (
+                                            <div>
+                                                <p>{item.type}</p>
+                                                <p>{item.startDate} - {item.endDate}</p>
+                                            </div>
+                                        ),
+                                    }))}
+                                />
+                            </div>
+                        </Card>
+                        <div className="flex flex-row lg:flex-col gap-2">
+                            <Card className="p-0 w-full lg:w-40">
+                                <img src="buy-me-a-coffee.png" alt="" />
+                            </Card>
+                            <Card className="p-0 w-full md:w-40">
+                                <img src="linkedin-logo-png-free-11660255212jmwsbnextx-removebg-preview (6).png" alt="" />
+                            </Card>
                         </div>
-                    </Card>
+                    </div>
                 </div>
                 <Card className="p-0 rounded-2xl flex flex-row justify-around items-center col-span-2 max-w-5xl">
                     <div className="text-center grid place-items-center gap-2">
@@ -121,14 +133,14 @@ export default function Home() {
                     </div>
                     <img src="meme1.webp" alt="" className="max-w-[230px]" />
                 </Card>
-                <div className="flex gap-2">
-                    <Card className="p-0 max-w-xs">
-                        <img src="buy-me-a-coffee.png" alt="" />
-                    </Card>
-                    <Card className="p-0 max-w-xs">
-                        <img src="linkedin-logo-png-free-11660255212jmwsbnextx-removebg-preview (6).png" alt="" />
-                    </Card>
-                </div>
+                <Card className="p-0 rounded-2xl flex flex-row justify-around items-center col-span-1 max-w-5xl">
+                    <div className="text-center grid place-items-center gap-2">
+                        <h1 className="text-xs md:text-sm text-neutral-400  font-normal">MORE ABOUT ME</h1>
+                        <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>
+                        <LuDownload className="text-xl md:text-5xl text-text-500" />
+                    </div>
+                    <img src="meme1.webp" alt="" className="max-w-[230px]" />
+                </Card>
             </div>
         </div>
     );

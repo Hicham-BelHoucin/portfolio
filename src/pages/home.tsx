@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import { BiArrowToRight } from "react-icons/bi";
 import { FaSpotify } from "react-icons/fa6";
 import { LuDownload } from "react-icons/lu";
-import fetchTopTracks from "../tools/spotify";
+import fetchTopTracks, { fetchPlayingNow } from "../tools/spotify";
 import Card from "../components/card";
 
 
@@ -41,11 +41,14 @@ export default function App() {
         artists: [{ name: 'Stormy' }]
     });
 
-    // Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
     React.useEffect(() => {
 
         (async () => {
-            setTopTrack(await fetchTopTracks());
+            const topTracks = await fetchTopTracks();
+            // select random track from top tracks
+            setTopTrack(topTracks[Math.floor(Math.random() * topTracks.length)]);
+            // setTopTrack(await fetchTopTracks());
+            console.log(await fetchPlayingNow());
         })()
 
     }, []);
@@ -76,7 +79,7 @@ export default function App() {
                     <div className="flex gap-1 md:gap-4">
                         <Card>
                             <h1 className="text-xl md:text-2xl text-white font-bold">21</h1>
-                            <h2 className="md:text-lg text-neutral-400 font-normal">Years</h2>
+                            <h2 className="md:text-lg text-neutral-400 font-normal">Age</h2>
                         </Card>
                         <Card>
                             <h1 className="text-xl md:text-2xl text-white font-bold">Morocco</h1>

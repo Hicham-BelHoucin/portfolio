@@ -10,7 +10,7 @@ const Card = ({
     return (
         <div
             className={twMerge(
-                "flex flex-col items-center justify-center bg-background-900  p-4 text-text-100 max-w-md rounded-xl overflow-hidden",
+                "flex flex-col items-center justify-center bg-background-900  p-4 text-text-100 max-w-md rounded-xl overflow-hidden w-full",
                 className
             )}
         >

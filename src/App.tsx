@@ -13,7 +13,7 @@ import { twMerge } from "tailwind-merge";
 import { BiArrowToRight } from "react-icons/bi";
 import Button from "./components/button";
 import { FaSpotify } from "react-icons/fa6";
-import fetchTopTracks from "./tools/spotify";
+import fetchTopTracks, { fetchPlayingNow } from "./tools/spotify";
 import { LuDownload } from "react-icons/lu";
 
 
@@ -49,7 +49,11 @@ export default function App() {
   React.useEffect(() => {
 
     (async () => {
-      setTopTrack(await fetchTopTracks());
+      const topTracks = await fetchTopTracks();
+      // select random track from top tracks
+      setTopTrack(topTracks[Math.floor(Math.random() * topTracks.length)]);
+      // setTopTrack(await fetchTopTracks());
+      console.log(await fetchPlayingNow());
     })()
 
   }, []);

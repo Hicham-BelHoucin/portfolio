@@ -99,7 +99,7 @@ const Navbar = () => {
     return (
         <nav className="flex gap-2 md:gap-8 p-4 h-16 rounded-full items-center z-10 text-text-600 justify-between">
             <h1 className="text-xl">
-                Hicham <span className="text-primary-500">Bel Houcin</span>
+                Hicham <span className="text-primary-500 font-bold">Bel Houcin</span>
             </h1>
             <button className="xl:hidden" onClick={() => {
                 setIsOpen(true);

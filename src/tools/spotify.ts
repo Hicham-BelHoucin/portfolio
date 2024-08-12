@@ -17,6 +17,33 @@ const isTokenExpired = (): boolean => {
   return now > parseInt(expiresAt);
 };
 
+const fetchPlayingNow = async () => {
+  try {
+    const res = await fetch(
+      "https://api.spotify.com/v1/me/player/currently-playing",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    if (data.error) {
+      console.error("Error fetching currently playing track:", data.error);
+      return null;
+    }
+
+    return data.item;
+  } catch (error) {}
+};
+
 const refreshToken = async () => {
   const refresh_token = localStorage.getItem("refresh_token") || _refreshToken;
 
@@ -87,14 +114,15 @@ const fetchTopTracks = async () => {
   };
 
   const topTracks = await (
-    await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=5", "GET")
+    await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=10", "GET")
   ).items;
 
   console.log("Top tracks:", topTracks);
 
   if (topTracks && topTracks.length > 0) {
-    return topTracks[0];
+    return topTracks;
   }
 };
 
 export default fetchTopTracks;
+export { fetchPlayingNow };
