@@ -4,7 +4,7 @@ const axios = require("axios"); // Ensure axios is installed: npm install axios
 const { JSDOM } = require("jsdom");
 
 // Your GitHub API key
-const GITHUB_API_KEY = "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";
+const GITHUB_API_KEY = "";
 
 // Axios instance with GitHub API key
 const axiosInstance = axios.create({
