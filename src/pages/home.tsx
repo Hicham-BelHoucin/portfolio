@@ -87,27 +87,45 @@ export default function App() {
 
     return (
 
-        <div className="grid m-auto gap-2 md:gap-4 md:grid-cols-2 xl:grid-cols-3 py-4 p-2">
-
-
-            <div className="grid gap-2 md:gap-4 w-full">
-
-                <div className="w-full md:col-span-2">
-                    <Card className="md:max-w-none rounded-2xl w-full col-span-2" link="/projects">
-                        <h1 className="text-xl md:text-2xl text-white font-bold">Pinned Repositories</h1>
-                        <div className="flex flex-col p-4 gap-2">
-                            {
-                                pinnedRepos.map((item, index) => (
-                                    <Project item={item} key={index} />
-                                ))
-                            }
-                        </div>
-                    </Card>
-                </div>
+        <div className="grid m-auto gap-2 md:gap-4 md:grid-cols-4 xl:grid-cols-3 py-4 p-2">
+            <div className="grid gap-4 md:col-span-2 xl:col-span-1">
+                <Card className="p-0 rounded-2xl relative">
+                    <img
+                        src="/map.png"
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute  bg-text-800 h-14 xl:h-24 w-14 xl:w-24 rounded-full opacity-40"></div>
+                    <img src="/emoji.png" alt="" className="absolute w-10 xl:w-20 " />
+                </Card>
+                <Card className="p-0 rounded-2xl flex flex-row justify-around items-end">
+                    <div className="text-center p-4 flex items-center justify-center flex-col  gap-2 h-full">
+                        <h1 className="text-xs md:text-sm text-neutral-400  font-normal">MORE ABOUT ME</h1>
+                        <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>
+                        <LuDownload className="text-xl md:text-5xl text-text-500" />
+                    </div>
+                    <img src="meme1.webp" alt="" className="w-[40%]" />
+                </Card>
+                <Card className="rounded-2xl w-full max-w-2xl">
+                    <h1 className="text-xl md:text-2xl text-white font-bold">GitHub Achievements</h1>
+                    <div className="flex p-4 gap-4">
+                        {
+                            achievement.map((item, index) => (
+                                <div key={index} className="flex flex-col items-center gap-2">
+                                    <img src={item.img_url} alt="" className="w-20" />
+                                    <div>
+                                        <h1>{item.name}</h1>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </Card>
             </div>
 
-            <div className="grid gap-2 md:gap-4">
 
+
+            <div className="grid gap-2 place-items-center md:col-span-2 xl:col-span-1">
                 <Card className="gap-2 md:gap-4">
                     <img
                         src="image-1.png"
@@ -139,21 +157,21 @@ export default function App() {
                         </Card>
                     </div>
                 </Card>
-                <div className="flex justify-between max-w-md gap-2 h-fit">
-                    <Card link="https://github.com/Hicham-BelHoucin">
-                        <FaGithub className="text-3xl md:text-5xl text-text-500" />
+                <div className="flex justify-between gap-2  h-full w-full">
+                    <Card link="https://github.com/Hicham-BelHoucin" clickable>
+                        <FaGithub className="text-xl md:text-5xl text-text-500" />
                     </Card>
-                    <Card>
-                        <FaLinkedin className="text-3xl md:text-5xl text-text-500" />
+                    <Card link="https://linkedin.com/in/hicham-bel-houcin" clickable>
+                        <FaLinkedin className="text-xl md:text-5xl text-text-500" />
                     </Card>
-                    <Card>
-                        <BiLogoGmail className="text-3xl md:text-5xl text-text-500" />
+                    <Card clickable link="mailto:belhoucin.hicham@gmail.com">
+                        <BiLogoGmail className="text-xl md:text-5xl text-text-500" />
                     </Card>
-                    <Card>
-                        <GrInstagram className="text-3xl md:text-5xl text-text-500" />
+                    <Card clickable link="https://instagram.com/hicham_belhoucin">
+                        <GrInstagram className="text-xl md:text-5xl text-text-500" />
                     </Card>
                 </div>
-                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-52" link="/projects">
+                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-56" link="/projects">
                     <img
                         src="/image (3).png"
                         alt="Profile"
@@ -161,27 +179,15 @@ export default function App() {
                     />
                 </Card>
             </div>
-            <div className="grid gap-4">
-                <Card className="p-0 rounded-2xl relative">
-                    <img
-                        src="/map.png"
-                        alt="Profile"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute  bg-text-800 h-14 xl:h-24 w-14 xl:w-24 rounded-full opacity-40"></div>
-                    <img src="/emoji.png" alt="" className="absolute w-10 xl:w-20 " />
-                </Card>
-                <Card className="rounded-2xl w-full max-w-2xl">
-                    <h1 className="text-xl md:text-2xl text-white font-bold">GitHub Achievements</h1>
-                    <div className="flex p-4 gap-2">
+
+
+            <div className="grid gap-2 md:gap-4 md:col-span-4 xl:col-span-1">
+                <Card className="md:max-w-none rounded-2xl w-full col-span-2 p-1 md:p-4" link="/projects">
+                    <h1 className="text-xl md:text-2xl text-white font-bold">Pinned Projects</h1>
+                    <div className="flex flex-col md:flex-row xl:flex-col p-4 gap-2">
                         {
-                            achievement.map((item, index) => (
-                                <div key={index} className="flex flex-col items-center gap-2">
-                                    <img src={item.img_url} alt="" className="w-32" />
-                                    <div>
-                                        <h1>{item.name}</h1>
-                                    </div>
-                                </div>
+                            pinnedRepos.map((item, index) => (
+                                <Project item={item} key={index} />
                             ))
                         }
                     </div>
@@ -189,7 +195,7 @@ export default function App() {
             </div>
 
 
-            <div className="w-full md:col-span-2 xl:col-span-3">
+            <div className="w-full md:col-span-4">
                 <Card className="md:max-w-none rounded-2xl w-full col-span-2">
                     <h1 className="text-xl md:text-2xl text-white font-bold">
                         {
