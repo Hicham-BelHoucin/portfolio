@@ -4,6 +4,7 @@ import Button from "../components/button";
 import { BiArrowToRight } from "react-icons/bi";
 import React from "react";
 import Card from "../components/card";
+import { motion } from "framer-motion";
 
 const experience = [
     {
@@ -129,105 +130,22 @@ optimize user experiences and platform performance.`
 ];
 
 
+
 export default function Experience() {
     const [active, setActive] = React.useState(0);
     const [state, setState] = React.useState<"education" | "experience">("experience");
     return (
         <>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
-                <h1 className="text-3xl">Project Showcase</h1>
-                <p>
-                    Here are some of the projects I have worked on. Click on the arrow to
-                    view more details.
-                </p>
-                <div className="flex gap-2 md:gap-4">
-                    <Button className={active === 0 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(0)
-                    }}>
-                        All
-                    </Button>
-                    <Button className={active === 1 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(1)
-                    }}>
-                        Personal
-                    </Button>
-                    <Button className={active === 2 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(2)
-                    }}>
-                        Educational
-                    </Button>
-
-                    <Button className={active === 3 ? "active-button" : "inactive-button"} onClick={() => {
-                        setActive(3)
-                    }}>
-                        Professional
-                    </Button>
-
-                </div>
-                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
-                    {new Array(3).fill(0).map((_, index) => (
-                        <Card className="p-0 relative">
-                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
-                            <img
-                                src="/Rectangle 24.png"
-                                alt="Project"
-                                className="rounded-xl w-full object-cover"
-                            />
-                            <div className="p-4">
-                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
-                                <h2 className="text-lg text-neutral-400 font-normal">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                                    hic eius eum voluptatum pariatur perferendis accusantium.
-                                    Error doloremque eos placeat nihil repellat tenetur nobis
-                                    excepturi cum atque. Est, fuga dolor.
-                                </h2>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center">
-                <h1 className="text-3xl">Education & Career</h1>
-                <p>
-                    Here are some of the projects I have worked on. Click on the arrow to
-                    view more details.
-                </p>
-                {/* <LandingPageSelector state={state} setState={setState} selectable /> */}
-                <div className="flex gap-2 md:gap-4">
-                    <Button className={state === "experience" ? "active-button" : "inactive-button"} onClick={() => {
-                        setState("experience")
-                    }}>
-                        Experience
-                    </Button>
-                    <Button className={state === "education" ? "active-button" : "inactive-button"} onClick={() => {
-                        setState("education")
-                    }}>
-                        Education
-                    </Button>
-
-                </div>
-                <div className="grid grid-cols-3 items-center gap-2 md:gap-4">
-                    {new Array(3).fill(0).map((_, index) => (
-                        <Card className="p-0 relative">
-                            <BiArrowToRight className="absolute right-6 top-6 text-text-100 text-5xl" />
-
-                            <img
-                                src="/Rectangle 24.png"
-                                alt="Project"
-                                className="rounded-xl w-full object-cover"
-                            />
-                            <div className="p-4">
-                                <h1 className="text-2xl text-white font-bold">Project 1</h1>
-                                <h2 className="text-lg text-neutral-400 font-normal">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                                    hic eius eum voluptatum pariatur perferendis accusantium.
-                                    Error doloremque eos placeat nihil repellat tenetur nobis
-                                    excepturi cum atque. Est, fuga dolor.
-                                </h2>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
+            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center bg-background-800 rounded-md w-[50%] h-[50%]">
+                <motion.div
+                    drag
+                    dragConstraints={{
+                        top: -50,
+                        left: -50,
+                        right: 50,
+                        bottom: 50,
+                    }}
+                />
             </div>
         </>
     )

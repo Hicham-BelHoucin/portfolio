@@ -61,29 +61,6 @@ const Demo = () => {
 
 
 export default function App() {
-    const [topTrack, setTopTrack] = React.useState<{
-        name: string;
-        artists: {
-            name
-            : string
-        }[];
-    }>({
-        name: 'MARADONA',
-        artists: [{ name: 'Stormy' }]
-    });
-
-    React.useEffect(() => {
-
-        (async () => {
-            const topTracks = await fetchTopTracks();
-            // select random track from top tracks
-            setTopTrack(topTracks[Math.floor(Math.random() * topTracks.length)]);
-            // setTopTrack(await fetchTopTracks());
-        })()
-
-
-
-    }, []);
 
     return (
 
@@ -126,7 +103,7 @@ export default function App() {
 
 
             <div className="grid gap-2 place-items-center md:col-span-2 xl:col-span-1">
-                <Card className="gap-2 md:gap-4">
+                <Card className="gap-2 md:gap-4" clickable link="/about">
                     <img
                         src="image-1.png"
                         alt="Profile"
@@ -171,18 +148,18 @@ export default function App() {
                         <GrInstagram className="text-xl md:text-5xl text-text-500" />
                     </Card>
                 </div>
-                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-56" link="/projects">
+                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-56" link="/career">
                     <img
-                        src="/image (3).png"
+                        src="/image(1).png"
                         alt="Profile"
-                        className="spinning-image absolute right-[40%] md:-left-[60%] max-w-lg object-cover"
+                        className="spinning-image absolute right-[40%] md:-left-[55%] max-w-lg object-cover"
                     />
                 </Card>
             </div>
 
 
             <div className="grid gap-2 md:gap-4 md:col-span-4 xl:col-span-1">
-                <Card className="md:max-w-none rounded-2xl w-full col-span-2 p-1 md:p-4" link="/projects">
+                <Card className="md:max-w-none rounded-2xl w-full col-span-2 p-1 md:p-4" link="/career">
                     <h1 className="text-xl md:text-2xl text-white font-bold">Pinned Projects</h1>
                     <div className="flex flex-col md:flex-row xl:flex-col p-4 gap-2">
                         {
@@ -197,7 +174,7 @@ export default function App() {
 
             <div className="w-full md:col-span-4">
                 <Card className="md:max-w-none rounded-2xl w-full col-span-2">
-                    <h1 className="text-xl md:text-2xl text-white font-bold">
+                    <h1 className="text-xl md:text-2xl text-white font-bold text-center">
                         {
                             value.reduce((acc, curr) => acc + curr.count, 0)
                         } {" "}
