@@ -119,7 +119,7 @@ export default function Experience() {
                                     <img
                                         src={`/${exp.title}.png`}
                                         alt="Profile"
-                                        className="z-20 spinning-image absolute -top-[70%] -right-[50%] max-w-xs object-cover"
+                                        className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
                                     />
                                 </Card>
                                 {index === Math.floor((experience.length - 1) / 2) && (
