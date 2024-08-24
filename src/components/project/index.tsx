@@ -45,7 +45,7 @@ export default function Project({ item }: {
         <Card className="bg-background-800 text-left min-h-72 justify-between" link={item.html_url}>
             <div className="grid gap-2 py-2">
                 <h1 className="text-xl">{toTitleCase(item.name)}</h1>
-                <h2 className=" text-text-500 max-h-[150px] overflow-auto">{item.description}</h2>
+                <h2 className=" text-text-500 max-h-[150px] overflow-auto scrollbar-hide">{item.description}</h2>
             </div>
             <div className="flex gap-2 justify-between w-full">
                 <div className="grid grid-flow-col gap-2">

@@ -25,7 +25,7 @@ html {
 }
 
 .spinning-image {
-  animation: spin 15s linear infinite;
+  animation: spin 20s linear infinite;
 }
 
 .active-button {
@@ -127,4 +127,13 @@ html {
   width: 2px;
   height: 120%;
   background-color: #666666;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

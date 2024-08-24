@@ -26,12 +26,7 @@ const languages = user.languageBreakdown
 
 
 
-function toTitleCase(str: string) {
-    return str
-        .toLowerCase() // Convert the string to lowercase
-        .replace(/[_-]/g, ' ') // Replace underscores and hyphens with spaces
-        .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize the first letter of each word
-}
+
 
 const value = user.heatmap
 

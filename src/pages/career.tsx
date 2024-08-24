@@ -5,29 +5,15 @@ import { BiArrowToRight } from "react-icons/bi";
 import React from "react";
 import Card from "../components/card";
 import { motion } from "framer-motion";
+import data from "./data.json";
+
+
+
+const skills = data
 
 const experience = [
-    {
-        title: "Full Stack Developer",
-        type: "Contract",
-        startDate: "Nov 2023",
-        endDate: "Present",
-        location: "Remote",
-        company: "High Tech Vision",
-        description: `Crafted a dynamic streaming platform as a full-stack developer,
-specializing in user authentication, playback functionality, and
-support ticket integration. Collaborated closely with the team to
-optimize user experiences and platform performance.`
-    },
-    {
-        title: "scraping-most-salled-products",
-        type: "Project",
-        startDate: "Jan 2022",
-        endDate: "Feb 2022",
-        location: "N/A",
-        company: "Personal Project",
-        description: "Implemented a Python web scraping script to collect data on most sold products from various online platforms."
-    },
+
+
     {
         title: "camping-app",
         type: "Project",
@@ -64,15 +50,7 @@ optimize user experiences and platform performance.`
         company: "Personal Project",
         description: "Built a personal portfolio website using React.js to showcase projects, skills, and experiences in an interactive manner."
     },
-    {
-        title: "youtube-downloader",
-        type: "Project",
-        startDate: "Nov 2022",
-        endDate: "Dec 2022",
-        location: "N/A",
-        company: "Personal Project",
-        description: "Developed a user-friendly YouTube playlist downloader in Python to convert videos to mp3 format."
-    },
+
     {
         title: "inception",
         type: "Project",
@@ -82,15 +60,7 @@ optimize user experiences and platform performance.`
         company: "Personal Project",
         description: "Explored system administration using Docker by virtualizing Docker images in a personal virtual machine."
     },
-    {
-        title: "todo-list-using-angular",
-        type: "Project",
-        startDate: "Mar 2023",
-        endDate: "Apr 2023",
-        location: "N/A",
-        company: "Personal Project",
-        description: "Built a simple todo list application using Angular framework and local storage."
-    },
+
     {
         title: "ft_transcendence",
         type: "Project",
@@ -110,7 +80,7 @@ optimize user experiences and platform performance.`
         description: "Inspired by the 90's game, implemented Ray Casting to create a dynamic view inside a maze using C and Makefile."
     },
     {
-        title: "websrv",
+        title: "webserv",
         type: "Project",
         startDate: "Sep 2023",
         endDate: "Oct 2023",
@@ -118,34 +88,75 @@ optimize user experiences and platform performance.`
         company: "Personal Project",
         description: "Wrote an HTTP server in C++ to understand HTTP protocol and test it with a real browser."
     },
-    {
-        title: "simple_ping_pong",
-        type: "Project",
-        startDate: "Nov 2023",
-        endDate: "Dec 2023",
-        location: "N/A",
-        company: "Personal Project",
-        description: "Developed a simple ping pong game in JavaScript and HTML, inspired by the classic tennis game."
-    },
+
 ];
 
-
+function toTitleCase(str: string) {
+    return str
+        .toLowerCase() // Convert the string to lowercase
+        .replace(/[_-]/g, ' ') // Replace underscores and hyphens with spaces
+        .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize the first letter of each word
+}
 
 export default function Experience() {
-    const [active, setActive] = React.useState(0);
-    const [state, setState] = React.useState<"education" | "experience">("experience");
+    const ref = React.useRef<HTMLDivElement>(null);
+
     return (
         <>
-            <div className="flex flex-col gap-2 md:gap-4 items-center justify-center bg-background-800 rounded-md w-[50%] h-[50%]">
-                <motion.div
-                    drag
-                    dragConstraints={{
-                        top: -50,
-                        left: -50,
-                        right: 50,
-                        bottom: 50,
-                    }}
-                />
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 md:p-4 place-content-center gap-4">
+                {
+                    experience.map((exp, index) => {
+
+                        return (
+                            <>
+                                <Card className="bg-transparent relative bg-background-900 min-h-72" key={index}>
+                                    <img src="/bg-image.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
+
+                                    <div className="text-left w-full h-full flex flex-col justify-end p-4 z-30">
+                                        <h1 className=" text-text-200 font-bold">{toTitleCase(exp.title)}</h1>
+                                        <p className=" text-sm text-text-400 font-semibold">{exp.description}</p>
+                                    </div>
+                                    <img
+                                        src={`/${exp.title}.png`}
+                                        alt="Profile"
+                                        className="z-20 spinning-image absolute -top-[70%] -right-[50%] max-w-xs object-cover"
+                                    />
+                                </Card>
+                                {index === Math.floor((experience.length - 1) / 2) && (
+                                    <motion.div
+                                        ref={ref}
+                                        className="flex flex-row flex-wrap bg-background-900 gap-2 md:gap-4 items-center justify-center rounded-md p-4"
+                                        style={{
+                                            overflow: "hidden", // Prevent elements from overflowing the container
+                                            position: "relative" // Ensure drag constraints are relative to this container
+                                        }}
+                                        key={"skills"}
+                                    >
+                                        {skills.map((skill, index) => (
+                                            <motion.div
+                                                // drag
+                                                dragConstraints={ref}
+                                                // dragElastic={0.5}
+                                                dragMomentum={true}
+                                                key={index}
+                                                // dragTransition={{ bounceStiffness: 600, bounceDamping: 25 }}
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                style={{
+                                                    position: "relative", // Ensure drag doesn't affect layout flow
+                                                    zIndex: index, // Stack order to avoid overlap
+                                                }}
+                                            >
+                                                <img src={skill.icon} alt={skill.label} className={twMerge("w-10")} />
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </>
+                        )
+                    })
+                }
+
             </div>
         </>
     )

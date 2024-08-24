@@ -14,7 +14,6 @@ import { LuDownload } from "react-icons/lu";
 import data from "./data.json";
 import Card from "../components/card";
 import Typewriter from "../components/type-writer";
-const { frontend, backend, languages, devops, skills } = data;
 
 /*
     https://github.com/Hicham-BelHoucin/
