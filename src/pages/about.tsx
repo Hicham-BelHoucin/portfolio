@@ -1,19 +1,7 @@
-import Button from "../components/button";
-import Heading from "../components/heading";
-import { twMerge } from "tailwind-merge";
-import React, { useRef, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import { GrInstagram } from "react-icons/gr";
-import { BiArrowToRight } from "react-icons/bi";
-import { FaSpotify } from "react-icons/fa6";
+import React from "react";
 import { LuDownload } from "react-icons/lu";
 
-import data from "./data.json";
 import Card from "../components/card";
-import Typewriter from "../components/type-writer";
 
 /*
     https://github.com/Hicham-BelHoucin/

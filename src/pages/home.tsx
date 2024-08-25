@@ -1,37 +1,17 @@
-import React from "react";
 
-import { RiGitForkLine, RiGitRepositoryFill } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { GrInstagram } from "react-icons/gr";
-import { twMerge } from "tailwind-merge";
-import { BiArrowToRight } from "react-icons/bi";
-import { FaSpotify } from "react-icons/fa6";
 import { LuDownload } from "react-icons/lu";
-import fetchTopTracks, { fetchPlayingNow } from "../tools/spotify";
 import Card from "../components/card";
 import user from "./user.json";
-import { RiGitForkFill } from "react-icons/ri";
-import { FaStar } from "react-icons/fa";
 import HeatMap from '@uiw/react-heat-map';
-import { IoMdPerson } from "react-icons/io";
-import { RiGroupFill } from "react-icons/ri";
-import { FaLocationArrow } from "react-icons/fa6";
 import Project from "../components/project";
+import CustomHeatMap from "../components/heat-map";
 
 const achievement = user.achievements
 const pinnedRepos = user.pinnedRepos
-const languages = user.languageBreakdown
-
-
-
-function toTitleCase(str: string) {
-    return str
-        .toLowerCase() // Convert the string to lowercase
-        .replace(/[_-]/g, ' ') // Replace underscores and hyphens with spaces
-        .replace(/\b\w/g, char => char.toUpperCase()); // Capitalize the first letter of each word
-}
 
 const value = user.heatmap
 
@@ -172,17 +152,7 @@ export default function App() {
             </div>
 
 
-            <div className="w-full md:col-span-4">
-                <Card className="md:max-w-none rounded-2xl w-full col-span-2">
-                    <h1 className="text-xl md:text-2xl text-white font-bold text-center">
-                        {
-                            value.reduce((acc, curr) => acc + curr.count, 0)
-                        } {" "}
-                        contributions in the last year
-                    </h1>
-                    <Demo />
-                </Card>
-            </div>
+            <CustomHeatMap />
         </div>
 
     );

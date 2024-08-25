@@ -1,8 +1,5 @@
-import { BiArrowFromRight } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
-import { FaLocationArrow } from "react-icons/fa6";
 import { IoMdArrowBack } from "react-icons/io";
-import { useContext } from "react";
 
 const Card = ({
     className,

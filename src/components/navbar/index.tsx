@@ -1,11 +1,5 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import Button from "../button";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import { FaInstagramSquare } from "react-icons/fa";
-import { GrInstagram } from "react-icons/gr";
 import { IoMenu } from "react-icons/io5";
 /*
     https://github.com/Hicham-BelHoucin/

@@ -1,7 +1,3 @@
-import { FaGithub, FaInstagramSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import { GrInstagram } from "react-icons/gr";
 
 export default function Footer() {
     return (

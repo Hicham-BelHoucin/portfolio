@@ -1,20 +1,6 @@
-import React from "react";
 
-import { RiGitForkLine, RiGitRepositoryFill } from "react-icons/ri";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import { GrInstagram } from "react-icons/gr";
-import { twMerge } from "tailwind-merge";
-import { BiArrowToRight } from "react-icons/bi";
-import { FaSpotify } from "react-icons/fa6";
-import { LuDownload } from "react-icons/lu";
 import { RiGitForkFill } from "react-icons/ri";
 import { FaStar } from "react-icons/fa";
-import HeatMap from '@uiw/react-heat-map';
-import { IoMdPerson } from "react-icons/io";
-import { RiGroupFill } from "react-icons/ri";
-import { FaLocationArrow } from "react-icons/fa6";
 import Card from "../card";
 
 
@@ -42,8 +28,36 @@ export default function Project({ item }: {
 
 
     return (
-        <Card className="bg-background-800 text-left min-h-72 justify-between" link={item.html_url}>
-            <div className="grid gap-2 py-2">
+        <Card className="bg-background-800 text-left min-h-72 justify-between" link={item.html_url} clickable >
+            <img src="/project-bg.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
+
+            <div className="text-left w-full h-full flex items-end z-30">
+                <div>
+
+                    <h1 className=" text-text-200 font-bold">{toTitleCase(item.name)}</h1>
+                    <p className=" text-sm max-h-[60px] overflow-auto scrollbar-hide text-text-400 font-semibold">{item.description}</p>
+                </div>
+
+                <div className="z-30">
+                    <div className="flex p-2 items-center gap-2">
+                        <FaStar />
+                        <h1>{item.stargazers_count}</h1>
+                    </div>
+                    <div className="flex p-2 items-center gap-2">
+                        <RiGitForkFill />
+                        <h1>{item.forks_count}</h1>
+                    </div>
+                </div>
+            </div>
+            <img
+                src={`/${item.name}.png`}
+                alt="Profile"
+                className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
+            />
+        </Card>
+    )
+}
+/* <div className="grid gap-2 py-2">
                 <h1 className="text-xl">{toTitleCase(item.name)}</h1>
                 <h2 className=" text-text-500 max-h-[150px] overflow-auto scrollbar-hide">{item.description}</h2>
             </div>
@@ -61,8 +75,4 @@ export default function Project({ item }: {
                         <h1>{item.forks_count}</h1>
                     </div>
                 </div>
-            </div>
-        </Card>
-    )
-}
-
+            </div> */

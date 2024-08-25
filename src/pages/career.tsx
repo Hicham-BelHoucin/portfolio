@@ -1,11 +1,11 @@
 import { twMerge } from "tailwind-merge";
-import Heading from "../components/heading";
-import Button from "../components/button";
-import { BiArrowToRight } from "react-icons/bi";
 import React from "react";
 import Card from "../components/card";
 import { motion } from "framer-motion";
 import data from "./data.json";
+import { getGithubRepos } from "../tools/github";
+import { FaStar } from "react-icons/fa";
+import { RiGitForkFill } from "react-icons/ri";
 
 const skills = data
 
@@ -78,7 +78,7 @@ const experience = [
         description: "Inspired by the 90's game, implemented Ray Casting to create a dynamic view inside a maze using C and Makefile."
     },
     {
-        title: "webserv",
+        title: "websrv",
         type: "Project",
         startDate: "Sep 2023",
         endDate: "Oct 2023",
@@ -86,8 +86,16 @@ const experience = [
         company: "Personal Project",
         description: "Wrote an HTTP server in C++ to understand HTTP protocol and test it with a real browser."
     },
-
 ];
+
+interface Repository {
+    name: string;
+    html_url: string;
+    languages_url: string;
+    description: string;
+    stargazers_count: number;
+    forks_count: number;
+}
 
 function toTitleCase(str: string) {
     return str
@@ -98,29 +106,58 @@ function toTitleCase(str: string) {
 
 export default function Experience() {
     const ref = React.useRef<HTMLDivElement>(null);
+    const [repos, setRepos] = React.useState<Repository[]>([]);
+
+    React.useEffect(() => {
+        (async () => {
+            try {
+                const data = await getGithubRepos();
+                setRepos(data);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, []);
 
     return (
         <>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 md:p-4 place-content-center gap-4">
                 {
-                    experience.map((exp, index) => {
-
+                    repos.length && repos.map((exp, index) => {
+                        if (exp.name === "Hicham-BelHoucin" || exp.description === null) {
+                            return null
+                        }
+                        console.log(exp.name)
                         return (
                             <>
-                                <Card className="bg-transparent relative bg-background-900 min-h-72" key={index}>
+                                <Card className="bg-background-900 text-left min-h-72 justify-between" key={exp.name} link={exp.html_url} clickable >
                                     <img src="/bg-image.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
 
-                                    <div className="text-left w-full h-full flex flex-col justify-end p-4 z-30">
-                                        <h1 className=" text-text-200 font-bold">{toTitleCase(exp.title)}</h1>
-                                        <p className=" text-sm text-text-400 font-semibold">{exp.description}</p>
+                                    <div className="text-left w-full h-full flex items-end z-30">
+                                        <div>
+
+                                            <h1 className=" text-text-200 font-bold">{toTitleCase(exp.name)}</h1>
+                                            <p className=" text-sm max-h-[60px] overflow-auto scrollbar-hide text-text-400 font-semibold">{exp.description}</p>
+                                        </div>
+
+                                        <div className="z-30">
+                                            <div className="flex p-2 items-center gap-2">
+                                                <FaStar />
+                                                <h1>{exp.stargazers_count}</h1>
+                                            </div>
+                                            <div className="flex p-2 items-center gap-2">
+                                                <RiGitForkFill />
+                                                <h1>{exp.forks_count}</h1>
+                                            </div>
+                                        </div>
                                     </div>
                                     <img
-                                        src={`/${exp.title}.png`}
+                                        src={`/${exp.name}.png`}
                                         alt="Profile"
                                         className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
                                     />
                                 </Card>
-                                {index === Math.floor((experience.length - 1) / 2) && (
+                                {index === Math.floor((experience.length) / 2) && (
                                     <motion.div
                                         ref={ref}
                                         className="flex flex-row flex-wrap bg-background-900 gap-2 md:gap-4 items-center justify-center rounded-md p-4"
@@ -128,7 +165,7 @@ export default function Experience() {
                                             overflow: "hidden", // Prevent elements from overflowing the container
                                             position: "relative" // Ensure drag constraints are relative to this container
                                         }}
-                                        key={"skills"}
+                                        key={index}
                                     >
                                         {skills.map((skill, index) => (
                                             <motion.div

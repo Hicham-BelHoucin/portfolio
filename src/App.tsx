@@ -19,6 +19,8 @@ const Contact = () => {
 
 export default function App() {
 
+  const ref = React.useRef(false);
+
   const notify = () => toast.info(`
       🛠️ Work in Progress! 🚧
       I'm still polishing things up, so stay tuned for more updates! ✨
@@ -34,7 +36,10 @@ export default function App() {
     });
 
   React.useEffect(() => {
-    notify();
+    if (!ref.current) {
+      ref.current = true;
+      notify();
+    }
   }, []);
 
 
