@@ -7,8 +7,6 @@ import Card from "../components/card";
 import { motion } from "framer-motion";
 import data from "./data.json";
 
-
-
 const skills = data
 
 const experience = [

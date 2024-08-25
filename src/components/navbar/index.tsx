@@ -53,7 +53,7 @@ const Drawer = ({ isOpen, onClose, children }: {
 }) => {
     return (
         <div
-            className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
+            className={`fixed top-0 right-0 z-50 h-screen p-4 overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
                 } bg-white w-80 dark:bg-gray-800`}
             tabIndex={-1}
             aria-labelledby="drawer-right-label"
@@ -97,7 +97,7 @@ const Navbar = () => {
     console.log(currentPageURL);
 
     return (
-        <nav className="flex gap-2 md:gap-8 p-4 h-16 rounded-full items-center z-10 text-text-600 justify-between">
+        <nav className="flex gap-2 md:gap-8 p-4 z-50 h-16 rounded-full items-center text-text-600 justify-between">
             <h1 className="text-xl">
                 Hicham <span className="text-primary-500 font-bold">Bel Houcin</span>
             </h1>

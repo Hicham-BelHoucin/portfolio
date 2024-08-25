@@ -7,6 +7,16 @@ import Footer from "./components/footer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
+
+const Contact = () => {
+  return (
+    <div className="flex gap-[20px] mx-[20px] flex-col">
+
+
+    </div>
+  )
+}
+
 export default function App() {
 
   const notify = () => toast.info(`
@@ -35,7 +45,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<Education />} />
         <Route path="/career" element={<Experience />} />
-        <Route path="/contact" element={<Experience />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <ToastContainer />
       <Footer />

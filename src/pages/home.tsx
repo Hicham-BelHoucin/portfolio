@@ -75,7 +75,7 @@ export default function App() {
                     <div className="absolute  bg-text-800 h-14 xl:h-24 w-14 xl:w-24 rounded-full opacity-40"></div>
                     <img src="/emoji.png" alt="" className="absolute w-10 xl:w-20 " />
                 </Card>
-                <Card className="p-0 rounded-2xl flex flex-row justify-around items-end">
+                <Card className="p-0 rounded-2xl flex flex-row justify-around items-end" clickable link="/belhoucin.hicham.pdf">
                     <div className="text-center p-4 flex items-center justify-center flex-col  gap-2 h-full">
                         <h1 className="text-xs md:text-sm text-neutral-400  font-normal">MORE ABOUT ME</h1>
                         <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>

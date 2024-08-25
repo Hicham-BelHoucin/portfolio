@@ -14,6 +14,14 @@ async function getProfileInfo(username: string): Promise<ProfileInfo> {
   return data;
 }
 
+async function getUserRepos(username: string): Promise<Repository[]> {
+  const response = await fetch(
+    `https://api.github.com/users/${username}/repos`
+  );
+  const repos: Repository[] = await response.json();
+  return repos;
+}
+
 interface Repository {
   name: string;
   html_url: string;
