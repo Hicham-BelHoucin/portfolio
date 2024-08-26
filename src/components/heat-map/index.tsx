@@ -9,6 +9,7 @@ import HeatMap from "@uiw/react-heat-map";
 import Project from "../project";
 import React, { useState } from "react";
 import { getGitHubContributionData } from "../../tools/github";
+import Spinner from "../spinner";
 
 const Demo = ({
     value,
@@ -46,6 +47,7 @@ export default function CustomHeatMap() {
             count: number;
         }[]
     >([]);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         (async () => {
@@ -54,19 +56,23 @@ export default function CustomHeatMap() {
                 setData(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setLoading(false);
             }
         })();
     }, []);
 
     return (
-        <div className="w-full md:col-span-4">
-            <Card className="md:max-w-none rounded-2xl w-full col-span-2">
-                <h1 className="text-xl md:text-2xl text-white font-bold text-center">
-                    {data.length && data.reduce((acc, curr) => acc + curr.count, 0)} contributions in the
-                    last year
-                </h1>
-                {data.length && <Demo value={data} />}
-            </Card>
+        <div className="w-full grid place-items-center md:col-span-4 min-h-52">
+            {loading ? (<Spinner className="m-auto" />) : (
+                <Card className="md:max-w-none rounded-2xl w-full col-span-2">
+                    <h1 className="text-xl md:text-2xl text-white font-bold text-center">
+                        {data.length && data.reduce((acc, curr) => acc + curr.count, 0)} contributions in the
+                        last year
+                    </h1>
+                    {data.length && <Demo value={data} />}
+                </Card>
+            )}
         </div>
     );
 }

@@ -6,6 +6,7 @@ import data from "./data.json";
 import { getGithubRepos } from "../tools/github";
 import { FaStar } from "react-icons/fa";
 import { RiGitForkFill } from "react-icons/ri";
+import Spinner from "../components/spinner";
 
 const skills = data
 
@@ -107,6 +108,7 @@ function toTitleCase(str: string) {
 export default function Experience() {
     const ref = React.useRef<HTMLDivElement>(null);
     const [repos, setRepos] = React.useState<Repository[]>([]);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         (async () => {
@@ -115,83 +117,91 @@ export default function Experience() {
                 setRepos(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setLoading(false);
             }
         })();
     }, []);
 
     return (
         <>
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 md:p-4 place-content-center gap-4">
+            <div className="grid md:grid-cols-2  xl:grid-cols-3 md:p-4 place-content-center gap-4">
                 {
-                    repos.length && repos.map((exp, index) => {
-                        if (exp.name === "Hicham-BelHoucin" || exp.description === null) {
-                            return null
-                        }
-                        console.log(exp.name)
-                        return (
-                            <>
-                                <Card className="bg-background-900 text-left min-h-72 justify-between" key={exp.name} link={exp.html_url} clickable >
-                                    <img src="/bg-image.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
+                    loading ? <div className="flex items-center justify-center h-[75vh] md:col-span-2 xl:col-span-3">
+                        <Spinner />
+                    </div> : (
 
-                                    <div className="text-left w-full h-full flex items-end z-30">
-                                        <div>
+                        repos.length ? repos.map((exp, index) => {
+                            if (exp.name === "Hicham-BelHoucin" || exp.description === null) {
+                                return null
+                            }
+                            return (
+                                <React.Fragment key={index}>
+                                    <Card className="bg-background-900 text-left min-h-72 justify-between" key={exp.name} link={exp.html_url} clickable >
+                                        <img src="/bg-image.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
 
-                                            <h1 className=" text-text-200 font-bold">{toTitleCase(exp.name)}</h1>
-                                            <p className=" text-sm max-h-[60px] overflow-auto scrollbar-hide text-text-400 font-semibold">{exp.description}</p>
-                                        </div>
+                                        <div className="text-left w-full h-full flex items-end z-30">
+                                            <div>
 
-                                        <div className="z-30">
-                                            <div className="flex p-2 items-center gap-2">
-                                                <FaStar />
-                                                <h1>{exp.stargazers_count}</h1>
+                                                <h1 className=" text-text-200 font-bold">{toTitleCase(exp.name)}</h1>
+                                                <p className=" text-sm max-h-[60px] overflow-auto scrollbar-hide text-text-400 font-semibold">{exp.description}</p>
                                             </div>
-                                            <div className="flex p-2 items-center gap-2">
-                                                <RiGitForkFill />
-                                                <h1>{exp.forks_count}</h1>
+
+                                            <div className="z-30">
+                                                <div className="flex p-2 items-center gap-2">
+                                                    <FaStar />
+                                                    <h1>{exp.stargazers_count}</h1>
+                                                </div>
+                                                <div className="flex p-2 items-center gap-2">
+                                                    <RiGitForkFill />
+                                                    <h1>{exp.forks_count}</h1>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <img
-                                        src={`/${exp.name}.png`}
-                                        alt="Profile"
-                                        className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
-                                    />
-                                </Card>
-                                {index === Math.floor((experience.length) / 2) && (
-                                    <motion.div
-                                        ref={ref}
-                                        className="flex flex-row flex-wrap bg-background-900 gap-2 md:gap-4 items-center justify-center rounded-md p-4"
-                                        style={{
-                                            overflow: "hidden", // Prevent elements from overflowing the container
-                                            position: "relative" // Ensure drag constraints are relative to this container
-                                        }}
-                                        key={index}
-                                    >
-                                        {skills.map((skill, index) => (
-                                            <motion.div
-                                                // drag
-                                                dragConstraints={ref}
-                                                // dragElastic={0.5}
-                                                dragMomentum={true}
-                                                key={index}
-                                                // dragTransition={{ bounceStiffness: 600, bounceDamping: 25 }}
-                                                whileHover={{ scale: 1.1 }}
-                                                whileTap={{ scale: 0.9 }}
-                                                style={{
-                                                    position: "relative", // Ensure drag doesn't affect layout flow
-                                                    zIndex: index, // Stack order to avoid overlap
-                                                }}
-                                            >
-                                                <img src={skill.icon} alt={skill.label} className={twMerge("w-10")} />
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </>
-                        )
-                    })
+                                        <img
+                                            src={`/${exp.name}.png`}
+                                            alt="Profile"
+                                            className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
+                                        />
+                                    </Card>
+                                    {index === Math.floor((experience.length) / 2) && (
+                                        <motion.div
+                                            ref={ref}
+                                            className="flex flex-row flex-wrap bg-background-900 gap-2 md:gap-4 items-center justify-center rounded-md p-4"
+                                            style={{
+                                                overflow: "hidden", // Prevent elements from overflowing the container
+                                                position: "relative" // Ensure drag constraints are relative to this container
+                                            }}
+                                            key={index}
+                                        >
+                                            {skills.map((skill, index) => (
+                                                <motion.div
+                                                    // drag
+                                                    dragConstraints={ref}
+                                                    // dragElastic={0.5}
+                                                    dragMomentum={true}
+                                                    key={index}
+                                                    // dragTransition={{ bounceStiffness: 600, bounceDamping: 25 }}
+                                                    whileHover={{ scale: 1.1 }}
+                                                    whileTap={{ scale: 0.9 }}
+                                                    style={{
+                                                        position: "relative", // Ensure drag doesn't affect layout flow
+                                                        zIndex: index, // Stack order to avoid overlap
+                                                    }}
+                                                >
+                                                    <img src={skill.icon} alt={skill.label} className={twMerge("w-10")} />
+                                                </motion.div>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </React.Fragment>
+                            )
+                        }) : <div className="m-auto flex flex-col items-center h-[75vh] justify-center gap-2 md:col-span-2 xl:col-span-3">
+                            <img src="no-results.png" alt="" className="w-28 md:w-52" />
+                            <h1 className="text-text-200 font-bold">No Repositories Found</h1>
+                        </div>
+                    )
                 }
-
             </div>
         </>
     )
