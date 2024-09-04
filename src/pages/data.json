@@ -19,5 +19,13 @@
   { "label": "Git", "icon": "/git.png" },
   { "label": "GitHub", "icon": "/github.png" },
   { "label": "VSCode", "icon": "/vscode.png" },
-  { "title": "Next JS", "icon": "/nextjs.png", "bgColor": "#C2C2C2" }
+  { "label": "Next JS", "icon": "/nextjs.png" },
+  {
+    "label": "Flask",
+    "icon": "/flask.png"
+  },
+  {
+    "label": "Python",
+    "icon": "/python.png"
+  }
 ]

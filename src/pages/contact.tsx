@@ -54,7 +54,6 @@ export default function Contact() {
     };
     return (
         <div className="flex flex-col container items-center gap-8 justify-center text-white p-8 m-auto    ">
-            <Heading title="Contact" />
             <div className="flex gap-6 items-center justify-center w-full max-w-6xl flex-col-reverse md:flex-row">
                 <div className="flex flex-col gap-4 w-full text-xs md:text-base">
                     <div className="flex items-center gap-4">

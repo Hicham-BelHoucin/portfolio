@@ -64,7 +64,7 @@ export default function Input({
                 type={htmlType}
                 name={name}
                 id={id}
-                className={twMerge("bg-[#43366A] border border-gray-500 text-white text-sm rounded-lg  block w-full p-2.5", className)}
+                className={twMerge("bg-background-800 border border-background-800 text-white text-sm rounded-lg  block w-full p-2.5", className)}
                 placeholder={placeholder}
                 onChange={onChange}
                 onKeyDown={onKeyDown}

@@ -6,36 +6,11 @@ import { GrInstagram } from "react-icons/gr";
 import { LuDownload } from "react-icons/lu";
 import Card from "../components/card";
 import user from "./user.json";
-import HeatMap from '@uiw/react-heat-map';
 import Project from "../components/project";
 import CustomHeatMap from "../components/heat-map";
 
 const achievement = user.achievements
 const pinnedRepos = user.pinnedRepos
-
-const value = user.heatmap
-
-const Demo = () => {
-    return (
-        <div className="w-full">
-            <HeatMap
-                className="w-full"
-                value={value}
-                weekLabels={['', 'Mon', '', 'Wed', '', 'Fri', '']}
-                style={{ color: '#fff' }}
-                startDate={new Date(value[0].date)}
-                panelColors={{
-                    0: '#f0e7fe',
-                    2: '#e0cffc',
-                    4: '#c19efa',
-                    10: '#a26ef7',
-                    20: '#843df5',
-                    30: '#510ac2',
-                }}
-            />
-        </div>
-    )
-};
 
 
 
