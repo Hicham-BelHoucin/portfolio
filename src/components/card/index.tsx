@@ -26,7 +26,7 @@ const Card = ({
             clickable &&
                 ref.current?.click()
         }}>
-            <a href={clickable ? link : undefined} ref={ref} className="hidden"></a>
+            <a href={link} ref={ref} className="hidden"></a>
             {!!link && !clickable && (
                 <button onClick={() => {
                     ref.current?.click()

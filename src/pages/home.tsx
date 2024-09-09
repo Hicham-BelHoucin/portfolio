@@ -27,8 +27,8 @@ export default function App() {
                         alt="Profile"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute  bg-text-800 h-14 xl:h-24 w-14 xl:w-24 rounded-full opacity-40"></div>
-                    <img src="/emoji.png" alt="" className="absolute w-10 xl:w-20 " />
+                    <div className="absolute  bg-text-800 h-14 xl:h-18 w-14 xl:w-18 rounded-full opacity-40"></div>
+                    <img src="/emoji.png" alt="" className="absolute w-10 xl:w-18 " />
                 </Card>
                 <Card className="p-0 rounded-2xl flex flex-row justify-around items-end" clickable link="/belhoucin.hicham.pdf">
                     <div className="text-center p-4 flex items-center justify-center flex-col  gap-2 h-full">
@@ -36,7 +36,6 @@ export default function App() {
                         <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>
                         <LuDownload className="text-xl md:text-5xl text-text-500" />
                     </div>
-                    <img src="meme1.webp" alt="" className="w-[40%]" />
                 </Card>
                 <Card className="rounded-2xl w-full max-w-2xl">
                     <h1 className="text-xl md:text-2xl text-white font-bold">GitHub Achievements</h1>
