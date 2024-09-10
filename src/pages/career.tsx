@@ -131,7 +131,7 @@ export default function Experience() {
                         <Spinner />
                     </div> : (
 
-                        repos.length ? repos.map((exp, index) => {
+                        repos && repos.length ? repos.map((exp, index) => {
                             if (exp.name === "Hicham-BelHoucin" || exp.description === null) {
                                 return null
                             }

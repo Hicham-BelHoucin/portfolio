@@ -68,11 +68,11 @@ export default function Home() {
 
     return (
         <div className="grid place-items-center xl:grid-cols-3 items-center gap-2 md:gap-4 p-2 md:p-4">
-            <Card className="col-span-3 md:col-auto xl:row-span-2 p-0 lg:max-w-sm">
+            <Card className="col-span-3 md:col-auto lg:row-span-2 p-0 lg:max-w-sm">
                 <img
-                    src="/image.jfif"
+                    src="/10240669.JPG"
                     alt="Profile"
-                    className="w-full rounded-xl object-cover h-full"
+                    className="w-full  rounded-xl object-cover h-full"
                 />
             </Card>
             <Card className="max-w-none col-span-3 md:col-span-2">
@@ -95,7 +95,7 @@ export default function Home() {
                 </div>
             </Card>
 
-            <Card className="w-full col-span-3 xl:col-span-2 flex-2 max-w-none">
+            <Card className="w-full col-span-3 lg:col-span-2 flex-2 max-w-none">
                 <div className="text-left overflow-hidden text-text-500 w-full">
                     <h1 className="text-2xl text-white font-bold">Education</h1>
                     <Timeline

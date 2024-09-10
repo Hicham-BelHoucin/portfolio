@@ -59,7 +59,8 @@ export default function App() {
             <div className="grid gap-2 place-items-center md:col-span-2 xl:col-span-1">
                 <Card className="gap-2 md:gap-4" clickable link="/about">
                     <img
-                        src="image-1.png"
+                        src="image.jfif"
+                        // src="image-1.png"
                         alt="Profile"
                         className="rounded-xl w-32 h-32 object-cover"
                     />
