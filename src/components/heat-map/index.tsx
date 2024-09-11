@@ -65,7 +65,7 @@ export default function CustomHeatMap() {
     return (
         <div className="w-full grid place-items-center md:col-span-4 min-h-52">
             {loading ? (<Spinner className="m-auto" />) : (
-                <Card className="md:max-w-none rounded-2xl w-full col-span-2">
+                <Card className="max-w-none rounded-2xl w-full col-span-2">
                     <h1 className="text-xl md:text-2xl text-white font-bold text-center">
                         {data.length && data.reduce((acc, curr) => acc + curr.count, 0)} contributions in the
                         last year

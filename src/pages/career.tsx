@@ -137,7 +137,7 @@ export default function Experience() {
                             }
                             return (
                                 <React.Fragment key={index}>
-                                    <Card className="bg-background-900 text-left min-h-72 justify-between" key={exp.name} link={exp.html_url} clickable >
+                                    <Card className="bg-background-900 max-w-none text-left min-h-72 justify-between" key={exp.name} link={exp.html_url} clickable >
                                         <img src="/bg-image.png" className="z-10 absolute top-0 left-0 w-full" alt="all1" />
 
                                         <div className="text-left w-full h-full flex items-end z-30">
@@ -164,7 +164,7 @@ export default function Experience() {
                                             className="z-20 spinning-image absolute -top-[70%] -right-[50%] md:-right-[40%] max-w-xs object-cover"
                                         />
                                     </Card>
-                                    {index === Math.floor((experience.length) / 2) && (
+                                    {index === Math.floor((experience.length - 1) / 2) && (
                                         <motion.div
                                             ref={ref}
                                             className="flex flex-row flex-wrap bg-background-900 gap-2 md:gap-4 items-center justify-center rounded-md p-4"

@@ -21,7 +21,7 @@ export default function App() {
 
         <div className="grid m-auto gap-2 md:gap-4 md:grid-cols-4 xl:grid-cols-3 py-4 p-2">
             <div className="grid gap-4 md:col-span-2 xl:col-span-1">
-                <Card className="p-0 rounded-2xl relative">
+                <Card className="p-0 max-w-none rounded-2xl relative">
                     <img
                         src="/map.png"
                         alt="Profile"
@@ -30,14 +30,14 @@ export default function App() {
                     <div className="absolute  bg-text-800 h-14 xl:h-18 w-14 xl:w-18 rounded-full opacity-40"></div>
                     <img src="/emoji.png" alt="" className="absolute w-10 xl:w-18 " />
                 </Card>
-                <Card className="p-0 rounded-2xl flex flex-row justify-around items-end" clickable link="/belhoucin.hicham.pdf">
+                <Card className="p-0 rounded-2xl max-w-none flex flex-row justify-around items-end" clickable link="/belhoucin.hicham.pdf">
                     <div className="text-center p-4 flex items-center justify-center flex-col  gap-2 h-full">
                         <h1 className="text-xs md:text-sm text-neutral-400  font-normal">MORE ABOUT ME</h1>
                         <h2 className="text-base md:text-xl text-white font-bold ">RESUME</h2>
                         <LuDownload className="text-xl md:text-5xl text-text-500" />
                     </div>
                 </Card>
-                <Card className="rounded-2xl w-full max-w-2xl">
+                <Card className="rounded-2xl max-w-none w-full">
                     <h1 className="text-xl md:text-2xl text-white font-bold">GitHub Achievements</h1>
                     <div className="flex p-4 gap-4">
                         {
@@ -57,7 +57,7 @@ export default function App() {
 
 
             <div className="grid gap-2 place-items-center md:col-span-2 xl:col-span-1">
-                <Card className="gap-2 md:gap-4" clickable link="/about">
+                <Card className="gap-2 max-w-none md:gap-4" clickable link="/about">
                     <img
                         src="image.jfif"
                         // src="image-1.png"
@@ -103,7 +103,7 @@ export default function App() {
                         <GrInstagram className="text-xl md:text-5xl text-text-500" />
                     </Card>
                 </div>
-                <Card className="p-0 rounded-2xl overflow-hidden h-40 md:h-56" link="/career">
+                <Card className="p-0 rounded-2xl overflow-hidden max-w-none h-40 md:h-56" link="/career">
                     <img
                         src="/image(1).png"
                         alt="Profile"
@@ -113,8 +113,8 @@ export default function App() {
             </div>
 
 
-            <div className="grid gap-2 md:gap-4 md:col-span-4 xl:col-span-1">
-                <Card className="md:max-w-none rounded-2xl w-full col-span-2 p-1 md:p-4" link="/career">
+            <div className="grid gap-2 w-full md:gap-4 md:col-span-4 xl:col-span-1">
+                <Card className="max-w-none rounded-2xl w-full col-span-2 p-1 md:p-4" link="/career">
                     <h1 className="text-xl md:text-2xl text-white font-bold">Pinned Projects</h1>
                     <div className="flex flex-col md:flex-row xl:flex-col p-4 gap-2">
                         {
