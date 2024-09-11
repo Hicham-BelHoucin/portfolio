@@ -70,7 +70,7 @@ export default function Home() {
         <div className="grid place-items-center xl:grid-cols-3 items-center gap-2 md:gap-4 p-2 md:p-4">
             <Card className="col-span-3 md:col-auto lg:row-span-2 p-0 lg:max-w-sm">
                 <img
-                    src="/10240669.JPG"
+                    src="/10240670.JPG"
                     alt="Profile"
                     className="w-full  rounded-xl object-cover h-full"
                 />

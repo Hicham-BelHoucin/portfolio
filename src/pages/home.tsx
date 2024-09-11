@@ -107,7 +107,7 @@ export default function App() {
                     <img
                         src="/image(1).png"
                         alt="Profile"
-                        className="spinning-image absolute right-[40%] md:-left-[55%] max-w-lg object-cover"
+                        className="spinning-image absolute right-[50%] md:-left-[60%] max-w-lg object-cover"
                     />
                 </Card>
             </div>
