@@ -11,8 +11,6 @@ import Spinner from "../components/spinner";
 const skills = data
 
 const experience = [
-
-
     {
         title: "camping-app",
         type: "Project",

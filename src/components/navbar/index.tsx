@@ -88,7 +88,6 @@ const Navbar = () => {
     const currentPageURL = window.location.href.split("/").pop();
     const [isOpen, setIsOpen] = React.useState(false);
 
-    console.log(currentPageURL);
 
     return (
         <nav className="flex gap-2 md:gap-8 p-4 z-50 h-16 rounded-full items-center text-text-600 justify-between">

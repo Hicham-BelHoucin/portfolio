@@ -23,24 +23,61 @@ const education = [
 const experience = [
     {
         title: "Full Stack Developer",
+        type: "Full-Time",
+        company: "Disrupt",
+        location: "Remote",
+        startDate: "Nov 2024",
+        endDate: "Present",
+        description:
+            "At Disrupt, I led the development of a comprehensive newspaper platform as a full-stack developer. My responsibilities included building scalable content management systems for articles, journalists, reels, and games, as well as implementing user and admin functionality. I integrated BoldReports for advanced tracking and reporting and enhanced the overall scalability and user engagement of the platform.",
+    },
+    {
+        title: "WordPress Migration Specialist",
+        type: "Freelance",
+        company: "Freelance",
+        location: "Remote",
+        startDate: "Aug 2024",
+        endDate: "Oct 2024",
+        description:
+            "As a freelance WordPress Migration Specialist, I migrated and modernized multiple WordPress websites to improve performance, enhance user experience, and refresh the overall design and UI/UX elements to align with contemporary standards.",
+    },
+    {
+        title: "Front-End Developer",
+        type: "Freelance",
+        company: "Freelance",
+        location: "Remote",
+        startDate: "Jul 2024",
+        endDate: "Aug 2024",
+        description:
+            "During my freelance tenure as a Front-End Developer, I designed and implemented key sections of a non-profit organization’s website, including the homepage, mission statement, and impact stories. I integrated donation systems, volunteer signup forms, and event management features to boost user interaction and support community engagement.",
+    },
+    {
+        title: "Full Stack Developer Intern",
         type: "Internship",
+        company: "High Tech Vision",
+        location: "Remote",
         startDate: "Nov 2023",
-        description: `Crafted a dynamic streaming platform as a full-stack developer, specializing in user authentication, playback functionality, and support ticket integration.Collaborated closely with the team to optimize user experiences and platform performance.`,
         endDate: "May 2024",
+        description:
+            "At High Tech Vision, I served as a full-stack developer intern, contributing to the creation of a dynamic streaming platform. I implemented robust user authentication, developed seamless playback functionality, and integrated a support ticketing system along with internal backoffice tools to streamline operations and elevate user support.",
     },
 ];
 
 const TimelineItem = ({
     title,
     children,
+    singleChild,
+    lastChild,
 }: {
     title: string;
     children: React.ReactNode;
+    singleChild: boolean;
+    lastChild: boolean;
 }) => {
     return (
         <div className="timeline-item">
             <div className="timeline-marker"></div>
-            <div className="timeline-content px-4">
+            <div className={`px-4 ${singleChild || lastChild ? "timeline-content-one-child" : "timeline-content"}`}>
                 <h3 className="timeline-title">{title}</h3>
                 <div>{children}</div>
             </div>
@@ -53,10 +90,12 @@ const Timeline = ({
 }: {
     items: { title: string; content: React.ReactNode }[];
 }) => {
+
+
     return (
         <div className="timeline w-full p-4">
             {items.map((item, index) => (
-                <TimelineItem key={index} title={item.title}>
+                <TimelineItem key={index} title={item.title} singleChild={items.length === 1} lastChild={index === items.length - 1}>
                     {item.content}
                 </TimelineItem>
             ))}

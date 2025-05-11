@@ -105,7 +105,19 @@ html {
   left: 0px;
   top: 1rem;
   width: 2px;
-  height: 10%;
+  height: 118%;
+  background-color: #666666;
+}
+
+/* Add this new rule */
+.timeline-content-one-child::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 1rem;
+  width: 2px;
+  height: 100%;
   background-color: #666666;
 }
 

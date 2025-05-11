@@ -90,7 +90,6 @@ const refreshToken = async () => {
 const fetchTopTracks = async () => {
   const fetchWebApi = async (endpoint: string, method: string) => {
     if (isTokenExpired()) {
-      console.log("Token expired, refreshing...");
       await refreshToken();
     }
 
@@ -116,8 +115,6 @@ const fetchTopTracks = async () => {
   const topTracks = await (
     await fetchWebApi("v1/me/top/tracks?time_range=long_term&limit=10", "GET")
   ).items;
-
-  console.log("Top tracks:", topTracks);
 
   if (topTracks && topTracks.length > 0) {
     return topTracks;
