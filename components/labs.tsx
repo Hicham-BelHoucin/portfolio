@@ -45,7 +45,7 @@ const labsContent = [
 export default function Labs() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05,
   });
 
   const containerVariants = {
@@ -72,9 +72,8 @@ export default function Labs() {
       id="labs"
       className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto" ref={ref}>
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -92,7 +91,6 @@ export default function Labs() {
         </motion.div>
 
         <motion.div
-          ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
@@ -124,7 +122,6 @@ export default function Labs() {
         </motion.div>
 
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
