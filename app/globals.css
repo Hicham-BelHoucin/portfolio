@@ -728,8 +728,15 @@ body {
   border-color: rgba(6,182,212,0.4);
 }
 
-/* ─── Contact Card ────────────────────────────────────────────────── */
-.contact-card {
+/* ─── Contact Card & Lead Form ────────────────────────────────────── */
+.contact-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.contact-links-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -754,6 +761,163 @@ body {
   background: rgba(124,58,237,0.12);
   color: var(--accent);
   border-color: rgba(124,58,237,0.3);
+}
+
+.lead-form {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 4px;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.lead-form-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.lead-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.lead-form input,
+.lead-form textarea {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.lead-form input:focus,
+.lead-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.lead-form-error {
+  color: #ef4444;
+  font-size: 12px;
+  margin: 0;
+}
+
+.lead-form-submit-btn {
+  background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+}
+
+.lead-form-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  opacity: 0.95;
+}
+
+.lead-form-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.lead-form-success {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 420px;
+  margin-top: 4px;
+  animation: scaleIn 0.3s ease both;
+}
+
+.success-icon {
+  background: #10b981;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.success-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.success-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #10b981;
+}
+
+.success-desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ─── Premium Markdown Link Chips ─────────────────────────────────────── */
+.md-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px dashed rgba(139, 92, 246, 0.3);
+  color: #c084fc !important;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 0.95em;
+  vertical-align: middle;
+}
+
+.md-link-chip:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: #c084fc;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+  transform: translateY(-1px);
+}
+
+.md-link-arrow {
+  font-size: 0.8em;
+  opacity: 0.7;
 }
 
 /* ─── Labs Grid ───────────────────────────────────────────────────── */

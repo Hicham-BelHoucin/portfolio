@@ -14,10 +14,16 @@ interface ChatAPIMessage {
   content: string;
 }
 
+const ONBOARDING_SUGGESTIONS = [
+  '💼 I am a Recruiter',
+  '🛠️ I am a Developer / Tech Lead',
+  '👋 Just exploring',
+];
+
 const WELCOME_RESPONSE = {
   type: 'text' as const,
-  text: "Hey! 👋 I'm **Hicham Bel Houcin** — a Full-Stack Engineer based in Casablanca.\n\nThis is my AI portfolio, powered by GPT-4o-mini. I can answer anything about my projects, experience, tech stack, availability, or how to reach me — go ahead, ask me anything!",
-  suggestions: STARTER_SUGGESTIONS,
+  text: "Hey! 👋 I'm **Hicham Bel Houcin** — a Full-Stack Engineer based in Casablanca.\n\nThink of this as an interactive agent representing my career. To tailor your experience, what brings you here today?",
+  suggestions: ONBOARDING_SUGGESTIONS,
 };
 
 // ─── Stream reader ────────────────────────────────────────────────────────────
@@ -63,7 +69,7 @@ export default function ChatbotPortfolio() {
   }]);
   const [isTyping, setIsTyping] = useState(false);
   const [streamingId, setStreamingId] = useState<string | null>('welcome');
-  const [suggestions, setSuggestions] = useState<string[]>(STARTER_SUGGESTIONS);
+  const [suggestions, setSuggestions] = useState<string[]>(ONBOARDING_SUGGESTIONS);
   const [context, setContext] = useState<ConversationContext>({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);

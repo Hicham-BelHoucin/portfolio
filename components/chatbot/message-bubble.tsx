@@ -59,12 +59,21 @@ function MarkdownContent({ text }: { text: string }) {
   return (
     <ReactMarkdown
       components={{
-        // Open all links in a new tab
-        a: ({ href, children }) => (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="md-link">
-            {children}
-          </a>
-        ),
+        // Open all links in a new tab with a beautiful chip look
+        a: ({ href, children }) => {
+          const isExternal = href?.startsWith('http');
+          return (
+            <a 
+              href={href} 
+              target={isExternal ? "_blank" : undefined} 
+              rel={isExternal ? "noopener noreferrer" : undefined} 
+              className="md-link-chip"
+            >
+              <span>{children}</span>
+              {isExternal && <span className="md-link-arrow">↗</span>}
+            </a>
+          );
+        },
         // Style headings
         h1: ({ children }) => <h3 className="md-h">{children}</h3>,
         h2: ({ children }) => <h3 className="md-h">{children}</h3>,
@@ -96,18 +105,105 @@ function MarkdownContent({ text }: { text: string }) {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
+function LeadForm() {
+  const [name, setName] = useState('');
+  const [contactInfo, setContactInfo] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !contactInfo || !message) return;
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, contactInfo, message }),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setName('');
+        setContactInfo('');
+        setMessage('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="lead-form-success">
+        <div className="success-icon">✓</div>
+        <div className="success-text-container">
+          <h4 className="success-title">Message sent successfully!</h4>
+          <p className="success-desc">Thank you for reaching out. Hicham has been notified and will get back to you shortly.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="lead-form">
+      <h4 className="lead-form-title">Drop Hicham a Quick Message</h4>
+      <div className="form-group">
+        <input 
+          type="text" 
+          placeholder="Your Name" 
+          value={name} 
+          onChange={e => setName(e.target.value)} 
+          required 
+          disabled={status === 'submitting'}
+        />
+      </div>
+      <div className="form-group">
+        <input 
+          type="text" 
+          placeholder="Your Email or LinkedIn" 
+          value={contactInfo} 
+          onChange={e => setContactInfo(e.target.value)} 
+          required 
+          disabled={status === 'submitting'}
+        />
+      </div>
+      <div className="form-group">
+        <textarea 
+          placeholder="Your Message..." 
+          value={message} 
+          onChange={e => setMessage(e.target.value)} 
+          required 
+          rows={3}
+          disabled={status === 'submitting'}
+        />
+      </div>
+      {status === 'error' && (
+        <p className="lead-form-error">⚠️ Failed to send message. Please email directly!</p>
+      )}
+      <button type="submit" className="lead-form-submit-btn" disabled={status === 'submitting'}>
+        {status === 'submitting' ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
+  );
+}
+
 function ContactCard({ payload }: { payload: { email: string; github: string; linkedin: string } }) {
   return (
-    <div className="contact-card">
-      <a href={`mailto:${payload.email}`} className="contact-link">
-        <Mail size={16} /> {payload.email}
-      </a>
-      <a href={payload.github} target="_blank" rel="noopener noreferrer" className="contact-link">
-        <Github size={16} /> GitHub
-      </a>
-      <a href={payload.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link">
-        <Linkedin size={16} /> LinkedIn
-      </a>
+    <div className="contact-card-container">
+      <div className="contact-links-grid">
+        <a href={`mailto:${payload.email}`} className="contact-link">
+          <Mail size={16} /> {payload.email}
+        </a>
+        <a href={payload.github} target="_blank" rel="noopener noreferrer" className="contact-link">
+          <Github size={16} /> GitHub
+        </a>
+        <a href={payload.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link">
+          <Linkedin size={16} /> LinkedIn
+        </a>
+      </div>
+      <LeadForm />
     </div>
   );
 }

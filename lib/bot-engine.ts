@@ -141,6 +141,9 @@ export interface ConversationContext {
 // ─── Intent Detection ─────────────────────────────────────────────────────────
 
 type Intent =
+  | 'recruiter-onboarding'
+  | 'developer-onboarding'
+  | 'visitor-onboarding'
   | 'greeting'
   | 'about'
   | 'projects'
@@ -179,6 +182,17 @@ function detectOrdinal(input: string): number | null {
 
 function detectIntent(input: string, ctx: ConversationContext): Intent {
   const t = input.toLowerCase().trim();
+
+  // Onboarding shortcuts
+  if (t.includes('recruiter') || t.includes('hiring') || t.includes('💼')) {
+    return 'recruiter-onboarding';
+  }
+  if (t.includes('developer') || t.includes('tech lead') || t.includes('🛠️')) {
+    return 'developer-onboarding';
+  }
+  if (t.includes('exploring') || t.includes('just browsing') || t.includes('👋')) {
+    return 'visitor-onboarding';
+  }
 
   // Ordinal / follow-up reference
   const ordinal = detectOrdinal(t);
@@ -266,6 +280,36 @@ export function generateResponse(
   let response: BotResponse;
 
   switch (intent) {
+    case 'recruiter-onboarding':
+      response = {
+        type: 'contact',
+        text: "Welcome! 💼 Since you are hiring, let's cut to the chase:\n\n- **Role:** Full-Stack & DevOps Engineer (open to Remote / Casablanca roles)\n- **Education:** RNCP Level 6 application development @ 1337 Coding School (42 Network)\n- **Current Role:** Full-Stack Engineer at Disrupt (Next.js, NestJS, CI/CD)\n- **Resume:** [Download Hicham's Resume (PDF)](/hicham_belhoucin_resume.pdf)\n\nYou can book a direct interview, fill in the contact form below, or reach me at belhoucin.hicham@gmail.com. Let's build something great!",
+        payload: {
+          email: 'belhoucin.hicham@gmail.com',
+          github: 'https://github.com/Hicham-BelHoucin',
+          linkedin: 'https://www.linkedin.com/in/hicham-bel-houcin/',
+        },
+        suggestions: ['Show me your projects', 'What is your tech stack?', 'How can I contact you?'],
+      };
+      break;
+
+    case 'developer-onboarding':
+      response = {
+        type: 'tech',
+        text: "Hey fellow developer! 🛠️ If you're a Tech Lead or Developer, here's the tech-heavy summary:\n\n- Mastered low-level systems (C/C++) and Docker at **1337 Coding School** (42 network)\n- Core stack: Next.js (SSG/ISR), NestJS, Node.js, PostgreSQL, Docker, GitLab CI/CD\n- Passionate about VPS management, Ansible, and automated pipelines\n\nCheck out my tech stack pills below, explore my [Labs & Experiments](/api/chat?query=labs), or ask me about specific implementation details!",
+        payload: TECH_STACK,
+        suggestions: ['Show me your projects', 'Tell me about your experience', 'What are your Labs?'],
+      };
+      break;
+
+    case 'visitor-onboarding':
+      response = {
+        type: 'text',
+        text: "Thanks for dropping by! 👋 Think of me as a virtual portal to explore my work.\n\nFeel free to check out my projects, learn about my professional experience, or look at my experimental labs. What are you most interested in?",
+        suggestions: ['Show me your projects', 'What\'s your experience?', 'What\'s your tech stack?'],
+      };
+      break;
+
     case 'greeting':
       response = {
         type: 'text',
