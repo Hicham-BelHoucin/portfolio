@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, ExternalLink } from 'lucide-react';
+import { title } from 'process';
 
 const projects = [
   {
@@ -29,6 +30,13 @@ const projects = [
     github: 'https://github.com/Hicham-BelHoucin',
     live: 'https://valoris-management.vercel.app/',
   },
+  {
+    title: "eFootball Automation Suite",
+    description: "Growth & Automation: Scaled a YouTube channel to 1,270+ subscribers by automating the multimedia pipeline.",
+    tags: ['Python', 'Selenium', 'Web Scraping', 'Automation', 'ffmpeg', 'remotion'],
+    github: 'https://github.com/Hicham-BelHoucin',
+    live: 'https://hicham-belhoucin.vercel.app',
+  }
 ];
 
 export default function Projects() {

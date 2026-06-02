@@ -1,14 +1,13 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Hicham Bel Houcin - Full-Stack Engineer & DevOps Specialist',
-  description: 'Hicham Bel Houcin - Full-Stack Engineer, DevOps specialist, and content creator. Explore projects, tech stack, and creative work.',
+  title: 'Hicham Bel Houcin — AI Portfolio',
+  description: 'Chat with Hicham\'s AI portfolio. Ask about his projects, experience, tech stack, and more. Full-Stack Engineer & DevOps specialist based in Casablanca.',
   icons: {
     icon: [
       {
@@ -34,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-background dark">
-      <body className="font-sans antialiased bg-background text-foreground">
+    <html lang="en" className={`${inter.variable} bg-background`} suppressHydrationWarning>
+      <body className="antialiased bg-background text-foreground">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
