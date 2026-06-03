@@ -6,8 +6,45 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Hicham Bel Houcin — AI Portfolio',
-  description: 'Chat with Hicham\'s AI portfolio. Ask about his projects, experience, tech stack, and more. Full-Stack Engineer & DevOps specialist based in Casablanca.',
+  title: 'Hicham Bel Houcin — Full-Stack & DevOps Engineer',
+  description: "Explore Hicham's engineering portfolio through a classic scroll view or a direct interactive AI agent. Ask about Next.js, NestJS, DevOps, systems, and automation projects.",
+  keywords: [
+    'Hicham Bel Houcin',
+    'Belhoucin Hicham',
+    'Full-Stack Engineer',
+    'DevOps Specialist',
+    'Casablanca Developer',
+    'Morocco Fullstack',
+    '1337 Coding School',
+    '42 Network student',
+    'Next.js Developer',
+    'NestJS Developer',
+    'Automation Developer'
+  ],
+  authors: [{ name: 'Hicham Bel Houcin', url: 'https://github.com/Hicham-BelHoucin' }],
+  creator: 'Hicham Bel Houcin',
+  openGraph: {
+    title: 'Hicham Bel Houcin — Full-Stack & DevOps Portfolio',
+    description: "Interactive AI Chatbot & Classic portfolio for Hicham Bel Houcin, Full-Stack Engineer based in Casablanca, Morocco.",
+    url: 'https://hicham-belhoucin.vercel.app',
+    siteName: 'Hicham Bel Houcin Portfolio',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hicham Bel Houcin Portfolio',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hicham Bel Houcin — Full-Stack & DevOps Portfolio',
+    description: "Interactive AI Chatbot & Classic portfolio for Hicham Bel Houcin, Full-Stack Engineer based in Casablanca, Morocco.",
+    images: ['/og-image.png'],
+  },
   icons: {
     icon: [
       {

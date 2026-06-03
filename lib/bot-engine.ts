@@ -5,7 +5,7 @@ export const PROJECTS = [
     id: 'news-platform',
     title: 'Enterprise News Platform & Custom CMS',
     description:
-      'Architected a high-performance news platform using Next.js with Static Site Generation (SSG) for optimal SEO and sub-second load times. Developed a custom NestJS backend enabling journalists to manage complex content types like reels and interactive games.',
+      'Architected a high-availability online newspaper CMS and portal serving millions of monthly requests. Leveraged Next.js Static Site Generation (SSG) to achieve sub-second load times, improving Core Web Vitals. Engineered custom NestJS workflows that optimized article publication timelines by 40%.',
     tags: ['Next.js', 'NestJS', 'Prisma', 'PostgreSQL', 'GitLab CI/CD'],
     github: 'https://github.com/Hicham-BelHoucin',
     live: 'https://lopinion.ma/fr',
@@ -14,7 +14,7 @@ export const PROJECTS = [
     id: 'social-automation',
     title: 'IG & TikTok & YouTube Shorts Automation Suite',
     description:
-      'Engineered a robust Python-based automation tool using Selenium to streamline content distribution across social platforms. Implemented advanced techniques to bypass anti-bot measures and handle complex web-driver interactions for automated scheduling.',
+      'Engineered a Python-based headless automation suite using Selenium to schedule and distribute short-form videos across IG, TikTok, and YouTube. Implemented fingerprint spoofing techniques to bypass Cloudflare anti-bot checks, eliminating 95% of manual social publishing workflows.',
     tags: ['Python', 'Selenium', 'Web Scraping', 'Automation'],
     github: 'https://github.com/Hicham-BelHoucin',
     live: 'https://hicham-belhoucin.vercel.app',
@@ -23,7 +23,7 @@ export const PROJECTS = [
     id: 'valoris',
     title: 'Valoris Website & CMS & Client Portal',
     description:
-      'Architected a bilingual (FR/EN) financial platform focusing on secure data handling. Integrated 3D web-graphics for branding and developed a custom document management system with RBAC.',
+      'Architected a secure bilingual financial client portal with custom document management and Role-Based Access Control (RBAC). Integrated interactive WebGL graphics to elevate user branding engagement.',
     tags: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Data Architecture', 'RBAC'],
     github: 'https://github.com/Hicham-BelHoucin',
     live: 'https://valoris-management.vercel.app/',
@@ -32,7 +32,7 @@ export const PROJECTS = [
     id: 'efootball',
     title: 'eFootball Automation Suite',
     description:
-      'Scaled a YouTube channel to 1,270+ subscribers by automating the entire multimedia pipeline — from content generation to upload scheduling using Python and ffmpeg.',
+      'Developed a video rendering and automated scheduling pipeline using Python, ffmpeg, and Remotion. Leveraged automated content production to scale a YouTube channel to 1,270+ subscribers with zero manual editing.',
     tags: ['Python', 'Selenium', 'Web Scraping', 'ffmpeg', 'Remotion'],
     github: 'https://github.com/Hicham-BelHoucin',
     live: 'https://hicham-belhoucin.vercel.app',

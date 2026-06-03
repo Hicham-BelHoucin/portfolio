@@ -163,7 +163,7 @@ export default function ChatbotPortfolio() {
           </button>
           <div className="header-brand">
             <div className="header-logo"><Bot size={18} /></div>
-            <span className="header-title">Hicham AI</span>
+            <h1 className="header-title">Hicham AI</h1>
             <span className="header-badge"><Sparkles size={10} /> GPT-4o-mini</span>
           </div>
           <div className="header-spacer" />
@@ -178,7 +178,7 @@ export default function ChatbotPortfolio() {
         {!hasStarted && (
           <div className="landing-hero">
             <div className="landing-logo"><Bot size={32} /></div>
-            <h1 className="landing-title">Hicham&apos;s Portfolio AI</h1>
+            <h2 className="landing-title">Hicham&apos;s Portfolio AI</h2>
             <p className="landing-subtitle">
               Powered by GPT-4o-mini — ask me anything about Hicham&apos;s projects, experience, tech stack, or how to hire him.
             </p>
