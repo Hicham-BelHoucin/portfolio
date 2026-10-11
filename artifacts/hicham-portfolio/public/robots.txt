@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hicham-bel-houcin.vercel.app/sitemap.xml
