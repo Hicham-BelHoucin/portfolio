@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Check, ChevronUp, Github, Linkedin, Mail, MapPin, Menu, Moon, Sun, X } from 'lucide-react';
 
 const profile = {
@@ -68,6 +68,8 @@ const skillGroups = [
   { title: 'Other', skills: ['C/C++'] },
   { title: 'Soft skills', skills: ['Communication', 'Project coordination', 'Adaptability', 'Time management'] },
 ];
+const terminalCommands = ['help', 'whoami', 'about', 'experience', 'projects', 'skills', 'contact', 'resume', 'theme', 'clear'];
+const sectionTargets = [{ label: 'Terminal', id: 'home' }, ...navItems.map((label) => ({ label, id: label.toLowerCase() }))];
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -76,6 +78,22 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formMessage, setFormMessage] = useState('');
   const [projectNotice, setProjectNotice] = useState('');
+  const [terminalInput, setTerminalInput] = useState('');
+  const [terminalLines, setTerminalLines] = useState<ReactNode[]>([]);
+  const [terminalAnnouncement, setTerminalAnnouncement] = useState('');
+  const [terminalHistory, setTerminalHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [greeting, setGreeting] = useState('');
+  const [greetingCleared, setGreetingCleared] = useState(false);
+  const [pageMode, setPageMode] = useState<'terminal' | 'classic'>('terminal');
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [paletteQuery, setPaletteQuery] = useState('');
+  const [paletteIndex, setPaletteIndex] = useState(0);
+  const terminalOutputRef = useRef<HTMLDivElement>(null);
+  const terminalInputRef = useRef<HTMLInputElement>(null);
+  const greetingTimerRef = useRef<number | null>(null);
+  const paletteInputRef = useRef<HTMLInputElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     document.body.classList.add('has-js');
@@ -101,6 +119,151 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const fullGreeting = "> whoami\nHicham Bel Houcin — Full-Stack Engineer\n> type 'help' to see commands";
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      setGreeting(fullGreeting);
+      setTerminalAnnouncement("Terminal ready. Type 'help' to see commands.");
+      return;
+    }
+    let position = 0;
+    const timer = window.setInterval(() => {
+      position += 1;
+      setGreeting(fullGreeting.slice(0, position));
+      if (position >= fullGreeting.length) {
+        window.clearInterval(timer);
+        greetingTimerRef.current = null;
+        setTerminalAnnouncement("Terminal ready. Type 'help' to see commands.");
+      }
+    }, 24);
+    greetingTimerRef.current = timer;
+    return () => {
+      window.clearInterval(timer);
+      greetingTimerRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const node = terminalOutputRef.current;
+    if (node) node.scrollTop = node.scrollHeight;
+  }, [terminalLines, greeting]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && !paletteOpen) {
+        event.preventDefault();
+        previousFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        setPaletteOpen(true);
+        setPaletteQuery('');
+        setPaletteIndex(0);
+      }
+      if (event.key === 'Escape' && paletteOpen) setPaletteOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [paletteOpen]);
+
+  useEffect(() => {
+    if (paletteOpen) {
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      paletteInputRef.current?.focus();
+      return () => { document.body.style.overflow = previousOverflow; };
+    }
+    const previousFocus = previousFocusRef.current;
+    previousFocusRef.current = null;
+    if (previousFocus?.isConnected) previousFocus.focus();
+    return undefined;
+  }, [paletteOpen]);
+
+  const executeCommand = (rawCommand: string) => {
+    const command = rawCommand.trim();
+    if (!command) return;
+    setTerminalHistory((items) => [...items, command]);
+    setHistoryIndex(-1);
+    setTerminalLines((items) => [...items, <span className="terminal-command-echo" key={`echo-${items.length}`}><b>&gt;</b> {command}</span>]);
+    const name = command.toLowerCase();
+    const addLines = (lines: ReactNode[], announcement: string) => {
+      setTerminalLines((items) => [...items, ...lines]);
+      setTerminalAnnouncement(announcement);
+    };
+    if (name === 'clear') {
+      if (greetingTimerRef.current !== null) {
+        window.clearInterval(greetingTimerRef.current);
+        greetingTimerRef.current = null;
+      }
+      setGreetingCleared(true);
+      setTerminalLines([]);
+      setTerminalInput('');
+      setTerminalAnnouncement('Terminal cleared.');
+      return;
+    }
+    if (name === 'help') {
+      const help = `Commands: ${terminalCommands.join(' · ')}`;
+      addLines([<span key="help">{help}</span>], help);
+    } else if (name === 'whoami') {
+      const identity = `${profile.name} — Full-Stack Engineer`;
+      addLines([<span key="whoami">{identity}</span>], identity);
+    } else if (name === 'about') {
+      const about = 'Full-stack engineer focused on fast, SEO-friendly products, scalable NestJS backends, and high-performance Next.js front-ends.';
+      addLines([<span key="about">{about}</span>], about);
+    } else if (name === 'experience') {
+      const history = experiences.map((item) => `${item.company} — ${item.role} (${item.dates})`).join('. ');
+      addLines(experiences.map((item, index) => <span key={`experience-${index}`}><strong>{item.company}</strong> — {item.role} ({item.dates}). {item.bullets[0]}</span>), history);
+    } else if (name === 'projects') {
+      const summary = projects.map((item) => `${item.title}: ${item.description}`).join('. ');
+      addLines(projects.map((item) => <span key={`project-${item.number}`}><strong>{item.title}:</strong> {item.description}</span>), summary);
+    } else if (name === 'skills') {
+      const summary = skillGroups.map((group) => `${group.title}: ${group.skills.join(', ')}`).join('. ');
+      addLines(skillGroups.map((group) => <span key={`skills-${group.title}`}><strong>{group.title}:</strong> {group.skills.join(', ')}</span>), summary);
+    } else if (name === 'contact') {
+      addLines([
+        <span key="contact-email">Email: <a href={`mailto:${profile.email}`}>{profile.email}</a></span>,
+        <span key="contact-phone">Phone: <a href={`tel:${profile.phone.replace(/\s/g, '')}`}>{profile.phone}</a></span>,
+        <span key="contact-github">GitHub: {profile.github ? <a href={profile.github} target="_blank" rel="noreferrer">{profile.github}</a> : <button className="terminal-placeholder" type="button" onClick={() => setTerminalAnnouncement('GitHub profile URL is not set. Add it to profile.github in src/App.tsx.')}>profile link not set</button>}</span>,
+        <span key="contact-linkedin">LinkedIn: {profile.linkedin ? <a href={profile.linkedin} target="_blank" rel="noreferrer">{profile.linkedin}</a> : <button className="terminal-placeholder" type="button" onClick={() => setTerminalAnnouncement('LinkedIn profile URL is not set. Add it to profile.linkedin in src/App.tsx.')}>profile link not set</button>}</span>,
+      ], `Email ${profile.email}. Phone ${profile.phone}. ${profile.github ? 'GitHub profile is linked.' : 'GitHub profile link is not set.'} ${profile.linkedin ? 'LinkedIn profile is linked.' : 'LinkedIn profile link is not set.'}`);
+    } else if (name === 'resume') {
+      if (profile.cvTarget) {
+        addLines([<span key="resume">Opening CV: <a href={profile.cvTarget} target="_blank" rel="noreferrer">download CV</a></span>], 'Opening the CV in a new tab.');
+        window.open(profile.cvTarget, '_blank', 'noopener,noreferrer');
+      } else {
+        const message = 'CV is not configured. Add an approved file path or URL to profile.cvTarget in src/App.tsx.';
+        addLines([<span key="resume-empty">{message}</span>], message);
+      }
+    } else if (name === 'theme') {
+      const next = !dark;
+      setDark(next);
+      const message = `Theme switched to ${next ? 'dark' : 'light'}.`;
+      addLines([<span key="theme">{message}</span>], message);
+    } else {
+      const message = `command not found: ${command}. Type 'help'.`;
+      addLines([<span key={`unknown-${terminalLines.length}`}>{message}</span>], message);
+    }
+    setTerminalInput('');
+  };
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    setMenuOpen(false);
+    setPaletteOpen(false);
+    setPageMode(id === 'home' ? 'terminal' : 'classic');
+  };
+
+  useEffect(() => {
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return undefined;
+    const updateMode = () => {
+      const nextMode = aboutSection.getBoundingClientRect().top < window.innerHeight * 0.42 ? 'classic' : 'terminal';
+      setPageMode((current) => current === nextMode ? current : nextMode);
+    };
+    updateMode();
+    window.addEventListener('scroll', updateMode, { passive: true });
+    return () => window.removeEventListener('scroll', updateMode);
+  }, []);
+
+  const paletteMatches = sectionTargets.filter((target) => target.label.toLowerCase().includes(paletteQuery.toLowerCase()));
+
   const submitContact = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -117,7 +280,9 @@ function App() {
         <div className="portfolio-shell topbar-inner">
           <a className="wordmark" href="#home" aria-label="Hicham Bel Houcin home">HB<span>.</span></a>
           <nav className={`site-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
-            {navItems.map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>)}
+            <button type="button" className={`nav-mode-control ${pageMode === 'terminal' ? 'is-active' : ''}`} aria-pressed={pageMode === 'terminal'} data-testid="button-mode-terminal" onClick={() => { setPageMode('terminal'); scrollTo('home'); }}>Terminal</button>
+            <button type="button" className={`nav-mode-control ${pageMode === 'classic' ? 'is-active' : ''}`} aria-pressed={pageMode === 'classic'} data-testid="button-mode-classic" onClick={() => { setPageMode('classic'); scrollTo('about'); }}>Classic</button>
+            {navItems.map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => { setMenuOpen(false); setPageMode('classic'); }}>{item}</a>)}
           </nav>
           <div className="top-actions">
             <button className="theme-toggle" type="button" aria-label={`Switch to ${dark ? 'light' : 'dark'} theme`} onClick={() => setDark(!dark)} data-testid="button-theme-toggle">
@@ -147,13 +312,47 @@ function App() {
             </div>
             <p className="cv-note" aria-live="polite">{formMessage.startsWith('CV') ? formMessage : ''}</p>
           </div>
-          <div className="hero-art reveal" aria-label="Decorative abstract engineering motif">
-            <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" />
-            <div className="art-cross cross-one" /><div className="art-cross cross-two" />
-            <div className="art-core"><span>BUILD</span><strong>↗</strong></div>
-            <span className="art-coordinate">33° 35′ N<br />07° 37′ W</span>
-            <span className="art-caption">Full ownership<br />from first commit to production.</span>
-            <span className="art-index">01 / 08</span>
+          <div className="terminal-wrap reveal">
+            <div className="terminal-window">
+              <div className="terminal-chrome">
+                <span className="traffic-lights" aria-hidden="true"><i /><i /><i /></span>
+                <span className="terminal-title">hicham@portfolio</span>
+                <span className="session-label">NEW SESSION</span>
+                <span className="terminal-online"><i /> online</span>
+              </div>
+              <div className="terminal-output" ref={terminalOutputRef} role="region" aria-label="Terminal output" aria-live="off">
+                {!greetingCleared && greeting.split('\n').map((line, index) => <div className={index === 1 ? 'terminal-greeting-result' : 'terminal-greeting-command'} key={`greeting-${index}`}>{line}</div>)}
+                {terminalLines.map((line, index) => <div className="terminal-line" key={`line-${index}`}>{line}</div>)}
+                <span className="terminal-cursor" aria-hidden="true" />
+              </div>
+              <div className="sr-only" aria-live="polite">{terminalAnnouncement}</div>
+              <form className="terminal-entry" onSubmit={(event) => { event.preventDefault(); executeCommand(terminalInput); }}>
+                <label htmlFor="terminal-command-input" className="terminal-prompt" aria-hidden="true">&gt;</label>
+                <input ref={terminalInputRef} id="terminal-command-input" aria-label="Enter a terminal command" data-testid="input-terminal-command" autoComplete="off" spellCheck={false} value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} onKeyDown={(event) => {
+                  if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    if (terminalHistory.length === 0) return;
+                    const next = Math.max(0, (historyIndex < 0 ? terminalHistory.length : historyIndex) - 1);
+                    setHistoryIndex(next);
+                    setTerminalInput(terminalHistory[next] || '');
+                  } else if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    if (historyIndex < 0) return;
+                    const next = historyIndex + 1;
+                    if (next >= terminalHistory.length) { setHistoryIndex(-1); setTerminalInput(''); }
+                    else { setHistoryIndex(next); setTerminalInput(terminalHistory[next] || ''); }
+                  } else if (event.key === 'Tab' && !event.shiftKey) {
+                    event.preventDefault();
+                    const match = terminalCommands.find((item) => item.startsWith(terminalInput.trim().toLowerCase()));
+                    if (match) setTerminalInput(match);
+                  }
+                }} />
+                <button className="terminal-submit" type="submit" aria-label="Run command" data-testid="button-terminal-submit"><ArrowRight size={16} /></button>
+              </form>
+            </div>
+            <div className="terminal-shortcuts" role="group" aria-label="Terminal command shortcuts">
+              {['about', 'experience', 'projects', 'skills', 'contact', 'resume'].map((command) => <button key={command} type="button" data-testid={`button-run-${command}`} onClick={() => { executeCommand(command); terminalInputRef.current?.focus(); }}>{command}</button>)}
+            </div>
           </div>
           <a className="scroll-cue" href="#about" aria-label="Scroll to about section">SCROLL TO EXPLORE <span /></a>
         </section>
@@ -267,6 +466,27 @@ function App() {
           <div className="footer-links"><a href="#contact">Contact</a><a className="back-top" href="#home">Back to top <ChevronUp size={15} /></a></div>
         </div>
       </footer>
+      {paletteOpen && <div className="palette-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setPaletteOpen(false); }}>
+        <section className="command-palette" role="dialog" aria-modal="true" aria-labelledby="palette-title" onKeyDown={(event) => {
+          if (event.key === 'Tab') {
+            const focusable = event.currentTarget.querySelectorAll<HTMLElement>('input, button:not(:disabled)');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+          }
+        }}>
+          <h2 id="palette-title">Jump to a section</h2>
+          <label className="sr-only" htmlFor="palette-search">Filter sections</label>
+          <input ref={paletteInputRef} id="palette-search" data-testid="input-section-palette" value={paletteQuery} placeholder="Type a section name…" onChange={(event) => { setPaletteQuery(event.target.value); setPaletteIndex(0); }} onKeyDown={(event) => {
+            if (event.key === 'ArrowDown') { event.preventDefault(); setPaletteIndex((index) => Math.min(index + 1, paletteMatches.length - 1)); }
+            if (event.key === 'ArrowUp') { event.preventDefault(); setPaletteIndex((index) => Math.max(0, index - 1)); }
+            if (event.key === 'Enter' && paletteMatches[paletteIndex]) scrollTo(paletteMatches[paletteIndex].id);
+          }} />
+          <div className="palette-options">{paletteMatches.length ? paletteMatches.map((target, index) => <button key={target.id} type="button" data-testid={`button-jump-${target.id}`} aria-current={index === paletteIndex ? 'true' : undefined} className={index === paletteIndex ? 'is-selected' : ''} onMouseEnter={() => setPaletteIndex(index)} onClick={() => scrollTo(target.id)}>{target.label}<span>Enter</span></button>) : <p>No matching sections.</p>}</div>
+          <p className="palette-hint">Use ↑ ↓ to navigate · Esc to close</p>
+        </section>
+      </div>}
     </div>
   );
 }
