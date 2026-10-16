@@ -1,0 +1,190 @@
+export const profile = {
+  name: 'Hicham Bel Houcin',
+  email: 'belhoucin.hicham@gmail.com',
+  phone: '+212 676793918',
+  website: 'https://hicham-belhoucin.vercel.app',
+  cvTarget: '',
+  github: 'https://github.com/Hicham-BelHoucin',
+  linkedin: 'https://www.linkedin.com/in/hicham-bel-houcin/',
+};
+
+export const navItems = ['About', 'Experience', 'Projects', 'Skills', 'Education', 'Languages', 'Contact'];
+export const highlights = [
+  '60,000 Articles Migrated',
+  'Enterprise Financial Backoffice',
+  'Docker & Inwi VDC Production',
+];
+export const experiences = [
+  {
+    company: 'Disrupt',
+    location: 'Casablanca, Morocco',
+    role: 'Full-Stack Developer',
+    dates: 'Nov 2024 – Present',
+    current: true,
+    bullets: [
+      'Built the complete Django backend, client portal, and administrative backoffice for Valoris Management financial platform with TOTP 2FA, JWT auth, and role-based access control.',
+      'Designed and engineered the newsroom CMS and backend architecture from scratch for L\'Opinion using NestJS, Prisma, and PostgreSQL.',
+      'Architected a custom scraping and data migration pipeline with Node.js and Puppeteer to extract and transfer 60,000 historical articles and rich metadata with zero data loss.',
+      'Built automated document workflows including authorized email ingestion, PDF/Excel attachment parsing, signed URLs, and production deployment on Inwi Virtual Data Center.',
+    ],
+  },
+  {
+    company: 'Freelance',
+    location: 'Remote',
+    role: 'Front-End Developer & WordPress Specialist',
+    dates: 'Jul 2024 – Oct 2024',
+    current: false,
+    bullets: [
+      'Engineered responsive landing pages, UX improvements, and custom donation/volunteer workflows for non-profit organizations.',
+      'Led complex WordPress migrations to modern hosting environments, improving page-load performance, SEO, and mobile experience.',
+    ],
+  },
+  {
+    company: 'High Tech Vision',
+    location: 'Casablanca, Morocco',
+    role: 'Full-Stack Developer Intern',
+    dates: 'Nov 2023 – May 2024',
+    current: false,
+    bullets: [
+      'Developed NestJS REST APIs and Next.js / Material UI administrative backoffices for a bilingual Arabic/English streaming platform.',
+      'Implemented HTTP range-requests for smooth video playback, watch-progress tracking, live-stream scheduling, and Stripe recurring subscriptions.',
+      'Built contributor submission and editorial approval workflows, role-based authorization, and an integrated customer support ticketing system.',
+    ],
+  },
+];
+export const projects = [
+  {
+    number: '01',
+    terminalFilename: 'valoris-management.md',
+    title: 'Valoris Management — Financial Platform',
+    caption: 'ENTERPRISE FINANCIAL PLATFORM',
+    companyOrRole: 'Disrupt · Enterprise Production',
+    description: 'Enterprise multi-component financial management platform featuring a client portal, advisor onboarding, automated email document extraction, TOTP 2FA, and audit trails.',
+    architecture: 'A multi-component enterprise platform for financial management, fund information, client administration, and confidential document workflows. Deployed on Inwi enterprise Virtual Data Center with Docker, layered reverse proxies (Nginx & Caddy), and private PostgreSQL, Redis, and MinIO storage.',
+    achievements: [
+      'Built complete Django backend, client portal, and administrative backoffice from scratch',
+      'Implemented TOTP 2FA, JWT sessions, role-based access control, login throttling, and audit trails',
+      'Built automated email document extraction: authorized ingestion, PDF/Excel attachment parsing, client matching, and encrypted storage with signed URLs',
+      'Developed multi-step advisor onboarding with draft recovery, OTP verification, and administrative review',
+      'Integrated ASFIM fund performance data and KPI analytics with automated public APIs',
+    ],
+    stack: ['Django', 'PostgreSQL', 'Redis', 'Docker', 'MinIO', 'Nginx', 'TOTP 2FA'],
+    links: [{ label: 'Enterprise Platform', href: '' }],
+    note: 'Deployed on Inwi Virtual Data Center with private microservices and WAF controls',
+  },
+  {
+    number: '02',
+    terminalFilename: 'lopinion-migration.md',
+    title: "L'Opinion News & 60K Article Migration",
+    caption: 'DIGITAL PUBLISHING & DATA PIPELINE',
+    companyOrRole: 'Disrupt · Digital Newsroom Architecture',
+    description: "Designed the complete NestJS publishing backend and built a custom Puppeteer pipeline that extracted and migrated 60,000 legacy articles and metadata without an export API.",
+    architecture: 'High-traffic news publishing platform and editorial CMS built with NestJS, Prisma, and PostgreSQL. Features scheduled publishing, digital newspaper flipbooks, podcasts, advertising campaign tracking, and Redis caching.',
+    achievements: [
+      'Migrated 60,000 historical articles and metadata using a custom Node.js & Puppeteer pipeline when the legacy provider had no export API',
+      'Designed and implemented the complete NestJS backend architecture from scratch with Prisma & PostgreSQL',
+      'Built article revisions, scheduled publishing, journalist RBAC, Google OAuth, and TOTP 2FA',
+      'Developed advertising campaign tracking (impressions & clicks) with automated scheduling and reporting',
+      'Engineered Redis caching, background job queues, sitemaps, and Google Analytics integration',
+    ],
+    stack: ['NestJS', 'Prisma', 'PostgreSQL', 'Redis', 'Puppeteer', 'Docker'],
+    links: [{ label: 'Live Site', href: 'https://www.lopinion.ma/' }],
+    note: 'Supports newsroom editorial workflows, scheduled publishing, podcasts, and flipbooks',
+  },
+  {
+    number: '03',
+    terminalFilename: 'efootballdb.md',
+    title: 'eFootball DB — Gaming Database & Tools',
+    caption: 'INDEPENDENT PRODUCTION PRODUCT',
+    companyOrRole: 'Independent Creator & Developer · Live Platform',
+    description: 'Independent gaming data platform featuring an interactive squad builder, player comparisons, training allocation calculators, multilingual routes, and technical SEO.',
+    architecture: 'Independent gaming utility platform (efootballdb.info) built with TypeScript, React, Next.js, and Tailwind CSS. Features player card analytics, stat progression calculators, and an interactive squad builder.',
+    achievements: [
+      'Architected interactive squad builder with custom formation layouts and manager tactical playing styles',
+      'Engineered side-by-side player comparisons and progression algorithms with position rating math',
+      'Built search-engine-optimized player profile pages with localized metadata, hreflang, and JSON-LD',
+      'Deployed globally with Cloudflare, strict Content Security Policies, and performance optimization',
+    ],
+    stack: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'Cloudflare', 'Technical SEO'],
+    links: [{ label: 'Live App', href: 'https://efootballdb.info' }],
+    note: 'Live independent product with comprehensive player data models and indexing',
+  },
+  {
+    number: '04',
+    terminalFilename: 'autoreliability.md',
+    title: 'Auto Reliability — NHTSA Intelligence',
+    caption: 'DATA INGESTION & SEARCH ENGINE',
+    companyOrRole: 'Independent Developer · Data Engineering',
+    description: 'Data platform analyzing NHTSA safety complaints and vehicle recalls using idempotent Python ingestion pipelines, partitioned PostgreSQL 16, and fast SSR reports.',
+    architecture: 'Automotive safety and reliability intelligence platform analyzing US National Highway Traffic Safety Administration (NHTSA) data. Combines Python ingestion pipelines with partitioned PostgreSQL and fast Astro SSR vehicle reports.',
+    achievements: [
+      'Designed resilient Python ingestion pipeline with validation, retries, dead-letter queues, and idempotent upserts',
+      'Engineered PostgreSQL 16 schema with year/decade partitioning and JSONB GIN indexes for sub-second complaint searches',
+      'Built Astro server-rendered vehicle reliability report pages with structured data and sitemaps',
+      'Optimized aggregation queries using PostgreSQL materialized views and Docker Compose deployment',
+    ],
+    stack: ['Astro', 'Python', 'PostgreSQL 16', 'Docker', 'ETL Pipelines'],
+    links: [{ label: 'Live App', href: 'https://autoreliability.info' }],
+    note: 'Partitioned database schema with GIN indexes for fast querying across vehicle defects',
+  },
+  {
+    number: '05',
+    terminalFilename: 'british-arab-community.md',
+    title: 'British Arab Community Streaming',
+    caption: 'BILINGUAL STREAMING & CMS',
+    companyOrRole: 'High Tech Vision · Full-Stack Developer Intern',
+    description: 'Bilingual Arabic/English streaming platform with video delivery, HTTP range requests, live broadcast scheduling, editorial approval flows, and Stripe subscriptions.',
+    architecture: 'Bilingual English/Arabic streaming platform featuring video programs, live broadcasts, Stripe subscriptions, and editorial backoffices built with NestJS and Next.js / Material UI.',
+    achievements: [
+      'Engineered NestJS REST APIs and Next.js administrative backoffice for shows, users, and tickets',
+      'Implemented HTTP range requests for protected video serving and watch-progress tracking',
+      'Integrated Stripe recurring subscriptions, payment webhooks, and premium tier access gating',
+      'Built live-stream scheduling, editorial contributor submission workflows, and support ticketing',
+    ],
+    stack: ['NestJS', 'Next.js', 'Prisma', 'PostgreSQL', 'Stripe', 'Material UI'],
+    links: [{ label: 'High Tech Vision Project', href: '' }],
+    note: 'Full-stack internship contribution featuring complete backoffice and API services',
+  },
+  {
+    number: '06',
+    terminalFilename: 'video-auto-poster.py',
+    title: 'Shorts & Reels Automation Tool',
+    caption: 'BROWSER AUTOMATION',
+    companyOrRole: 'Personal Automation Tool',
+    description: 'Automated video distribution software for Instagram and YouTube Shorts, overcoming web-driver anti-bot detection and handling dynamic media upload sessions.',
+    architecture: 'Browser automation utility built with Python and Selenium for automated video distribution across Instagram and YouTube Shorts, overcoming dynamic web UIs and bot detection.',
+    achievements: [
+      'Automated multi-platform video uploads, caption formatting, and publishing workflows',
+      'Implemented session persistence and anti-bot mitigation techniques to minimize manual overhead',
+    ],
+    stack: ['Python', 'Selenium', 'Automation'],
+    links: [{ label: 'Automation Tool', href: '' }],
+    note: 'Engineered to eliminate repetitive manual publishing and manage session state',
+  },
+];
+export const skillGroups = [
+  { title: 'Backend Engineering', skills: ['NestJS', 'Django', 'Node.js', 'REST APIs', 'TOTP / 2FA', 'RBAC', 'Background Jobs'] },
+  { title: 'Frontend Development', skills: ['TypeScript', 'JavaScript', 'React', 'Next.js', 'Angular', 'Tailwind CSS', 'Material UI'] },
+  { title: 'Databases & Data', skills: ['PostgreSQL', 'Prisma', 'Redis', 'Data Migration (60k)', 'ETL Pipelines', 'Web Scraping', 'SQL'] },
+  { title: 'DevOps & Infrastructure', skills: ['Docker', 'Docker Compose', 'Linux / VPS', 'Inwi VDC', 'Nginx', 'MinIO', 'GitLab CI/CD', 'Cloudflare'] },
+  { title: 'Languages', skills: ['TypeScript', 'JavaScript', 'Python', 'SQL', 'C', 'C++'] },
+  { title: 'Professional Strengths', skills: ['Full Architectural Ownership', 'Security & Auth', 'Data Pipelines', 'Technical SEO', 'Product Delivery'] },
+];
+export const virtualFiles = [
+  { name: 'about.md', size: '1.2 KB', desc: 'Background & engineering overview' },
+  { name: 'valoris-management.md', size: '3.4 KB', desc: 'Enterprise Financial Platform (Django, TOTP 2FA, Inwi VDC)' },
+  { name: 'lopinion-migration.md', size: '3.8 KB', desc: '60,000 Articles Puppeteer Migration & NestJS CMS' },
+  { name: 'efootballdb.md', size: '2.4 KB', desc: 'eFootball DB Squad Builder & Analytics (efootballdb.info)' },
+  { name: 'autoreliability.md', size: '2.1 KB', desc: 'Automotive Reliability Index & Scrapers (autoreliability.info)' },
+  { name: 'british-arab-community.md', size: '2.0 KB', desc: 'Bilingual Video Streaming Platform (NestJS, Next.js)' },
+  { name: 'video-auto-poster.py', size: '1.6 KB', desc: 'Selenium / Python Multi-platform Video Bot' },
+  { name: 'skills.json', size: '2.2 KB', desc: 'Backend, Frontend, Databases & DevOps tech stack' },
+  { name: 'experience.md', size: '2.5 KB', desc: 'Career history at Disrupt, Freelance, and High Tech Vision' },
+  { name: 'contact.sh', size: '0.8 KB', desc: 'Interactive communication channels & social links' },
+];
+
+export const terminalCommands = [
+  'help', 'ls', 'cat', 'whoami', 'about', 'experience', 'projects', 'skills',
+  'education', 'languages', 'contact', 'resume', 'classic', 'gui', 'theme', 'date', 'uname', 'pwd', 'history', 'clear'
+];
+export const sectionTargets = [{ label: 'Terminal', id: 'terminal' }, ...navItems.map((label) => ({ label, id: label.toLowerCase() }))];

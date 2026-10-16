@@ -1,1 +1,0 @@
-- [Portfolio visual continuity](portfolio-visual-continuity.md) — preserve the current look and all established sections when extending Hicham’s portfolio.

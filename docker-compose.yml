@@ -1,0 +1,28 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: hicham-portfolio
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - /app/node_modules
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: sync
+          path: ./public
+          target: /app/public
+        - action: sync
+          path: ./index.html
+          target: /app/index.html
+        - action: rebuild
+          path: ./package.json
+    restart: unless-stopped
