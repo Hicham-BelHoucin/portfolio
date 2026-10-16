@@ -325,7 +325,7 @@ function App() {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="topbar">
         <div className="portfolio-shell topbar-inner">
-          <a className="wordmark" href="#home" onClick={(e) => { e.preventDefault(); scrollTo('home'); }} aria-label="Hicham Bel Houcin home">HB<span>.</span></a>
+          <a className="wordmark" href="#home" onClick={(e) => { e.preventDefault(); scrollTo('home'); }} aria-label="Hicham Bel Houcin home"><img className="brand-logo" src="/logo.png" width={40} height={40} alt="Hicham Bel Houcin monogram" decoding="async" /></a>
           <nav className={`site-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
             <button
               type="button"
@@ -596,7 +596,7 @@ function App() {
 
       <footer className="footer">
         <div className="portfolio-shell footer-inner">
-          <a className="wordmark footer-mark" href="#home" onClick={(e) => { e.preventDefault(); scrollTo('home'); }}>HB<span>.</span></a>
+          <a className="wordmark footer-mark" href="#home" onClick={(e) => { e.preventDefault(); scrollTo('home'); }} aria-label="Hicham Bel Houcin home"><img className="brand-logo" src="/logo.png" width={40} height={40} alt="Hicham Bel Houcin monogram" loading="lazy" decoding="async" /></a>
           <p>© {new Date().getFullYear()} Hicham Bel Houcin <span>·</span> Made in Casablanca.</p>
           <div className="footer-links">
             <a href={profile.github} target="_blank" rel="noreferrer" aria-label="Hicham Bel Houcin on GitHub">GitHub</a>

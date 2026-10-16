@@ -66,7 +66,8 @@ body { background: var(--page); color: var(--ink); }
 .skip-link:focus { transform: translateY(0); }
 .topbar { height: 76px; position: sticky; z-index: 20; top: 0; background: color-mix(in srgb, var(--page) 88%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
 .topbar-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
-.wordmark { text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: -.08em; color: var(--ink); }
+.wordmark { display: inline-flex; align-items: center; flex-shrink: 0; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: -.08em; color: var(--ink); }
+.brand-logo { display: block; width: 40px; height: 40px; border-radius: 9px; background: #08171d; object-fit: contain; }
 .wordmark span { color: var(--accent-hex); }
 .site-nav { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.75rem); }
 .site-nav a, .theme-toggle { font-size: .73rem; font-weight: 700; text-decoration: none; color: var(--muted-ink); transition: color .2s ease; }
